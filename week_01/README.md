@@ -1,5 +1,5 @@
 # Wesley Janson 
-### CAPP30239-Data Visualization for Public Analysis 
+### CAPP30239-Data Visualization for Policy Analysis 
 
 
 (not an artist) 
