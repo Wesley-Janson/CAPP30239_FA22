@@ -1,6 +1,6 @@
 # Wesley Janson 
-## Data Visualization for Public Analysis 
-### CAPP30239_FA22 
+### Data Visualization for Public Analysis 
+### CAPP30239 
 
 
 (not an artist) 
