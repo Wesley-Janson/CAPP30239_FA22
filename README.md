@@ -12,6 +12,6 @@ repository will have folders for each corresponding week.
 # Week 2
 * Begin collecting "Dear Data" project data
 * Begin using JavaScript interacting with HTML
+* Create final "Dear Data" visualization
 
 # Week 3
-* Create final "Dear Data" visualization
