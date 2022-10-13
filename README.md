@@ -15,3 +15,5 @@ repository will have folders for each corresponding week.
 * Create final "Dear Data" visualization
 
 # Week 3
+* Discuss differing data visualization/art styles
+* Develop initial js3 bar chart
