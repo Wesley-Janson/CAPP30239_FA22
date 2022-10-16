@@ -16,4 +16,6 @@ repository will have folders for each corresponding week.
 
 # Week 3
 * Discuss differing data visualization/art styles
-* Develop initial js3 bar chart
+* Develop initial D3.js bar chart
+* Create Github page for this course
+* Finish homework creating example bar chart using HTML and D3.js
