@@ -29,3 +29,6 @@ by component.
 
 * I would categorize it as a primary source, although this data has had some manipulation by the Federal
 Reserve Bank of Cleveland, simply creating the relative weights from the raw quantities data.
+
+## Visualizing Library Visits with HTML and D3.js
+* Using both HTML and D3.js, we are able to create simple bar graph illustrating the number of visits to different libraries in January of 2022. This data was downloaded from the [Chicago Data Portal](https://data.cityofchicago.org/Education/Libraries-2022-Visitors-by-Location/ykhx-yxn9).
