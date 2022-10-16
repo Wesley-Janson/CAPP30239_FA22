@@ -7,8 +7,9 @@ Bar chart for Homework-Week 3
 
 d3.csv("library_visits_jan22.csv").then(data => {
 
+    // Coerce 'num' column to a number
     for (let d of data) {
-        d.num = +d.num;  // Coerces 'num' column to a number
+        d.num = +d.num;
     };
 
     const height = 600,
@@ -48,6 +49,8 @@ d3.csv("library_visits_jan22.csv").then(data => {
         .join("g")
         .attr("class", "bar");
 
+    /* Append bar graph-as "rect" shape
+       Specify bar wisth and height (based off 'num' column values) */
     bar.append("rect")
         .attr("fill", "steelblue")
         .attr("x", d => x(d.branch))
