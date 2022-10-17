@@ -3,13 +3,12 @@
 ## Final Project Data
 
 * Data source: Federal Reserve Bank of Cleveland calculations, via the Bureau of Economic Analysis
-Raw data link: https://apps.bea.gov/iTable/iTable.cfm?reqid=19&step=3&isuri=1&select_all_years=0&nipa_table_list=2013&series=m&first_year=2020&last_year=2022&scale=-99&categories=underlying&thetable=
+Raw data link: https://bea.gov/national/Release/XLS/Underlying/Section2All_xls.xlsx
 
 
 * Data Description: This data is from the Bureau of Economic Analysis' (BEA) Personal Income and Outlays report. 
 This data is what is used in their Personal Consumption Expenditures (PCE) Price Index, a measure of inflation targeted
-by the Federal Reserve System. More specifically, I have a CSV of prices (prices.csv) for the 200 components (i.e. the basket of goods)
-in the index, and their relative weights as a percentage of total quantity (weights.csv) from January 1997 onwards.
+by the Federal Reserve System. More specifically, I have a CSV of prices (prices.csv) for the 200 components (i.e. the basket of goods) in the index, and their relative weights as a percentage of total quantity (weights.csv) from January 1997 onwards.
 
 * I am interested in this topic because of its increasing relevance to day-to-day life; inflation, that is.
 This is also a topic that I have spent quite an amount of time researching (an undergraduate thesis, and then

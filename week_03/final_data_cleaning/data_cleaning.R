@@ -7,7 +7,7 @@
 ####
 
 
-setwd("/Users/wrjanson/Documents/UChicago/CAPP30239_FA22")  # Set your working directory
+setwd("/Users/wrjanson/Documents/UChicago/CAPP30239_FA22/week_03/final_data_cleaning/")  # Set your working directory
 
 dates <- read_xlsx("full_pce_data.xlsx", sheet = "P,Q,Weights Dates", col_names = FALSE)
 colnames(dates) <- "Date"
@@ -19,11 +19,12 @@ prices <- read_xlsx("full_pce_data.xlsx", sheet = "P", col_names = FALSE)
 colnames(prices) <- components[1,]
 
 weights <- read_xlsx("full_pce_data.xlsx", sheet = "Weights", col_names = FALSE)
+weights <- rbind(rep(NA,length(weights)),weights)
 colnames(weights) <- components[1,]
 
 #### Finalize both prices and weights CSV files
 prices <- cbind(dates, prices)
-weights <- cbind(dates[-length(dates),], weights)
+weights <- cbind(dates, weights)
 
 ### Export to CSV
 write_csv(prices, "prices.csv")
