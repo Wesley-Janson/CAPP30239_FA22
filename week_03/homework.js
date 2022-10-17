@@ -38,10 +38,12 @@ d3.csv("library_visits_jan22.csv").then(data => {
         .call(d3.axisLeft(y));
 
     svg.append("g")
-        .call(xAxis);
-
+        .attr("transform", `translate(0,${height - margin.bottom + 5})`) // move location of axis
+        .call(d3.axisBottom(x));
+    
     svg.append("g")
-        .call(yAxis);
+        .attr("transform", `translate(${margin.left - 5},0)`)
+        .call(d3.axisLeft(y));
 
     let bar = svg.selectAll(".bar")
         .append("g")
@@ -53,10 +55,17 @@ d3.csv("library_visits_jan22.csv").then(data => {
        Specify bar wisth and height (based off 'num' column values) */
     bar.append("rect")
         .attr("fill", "steelblue")
-        .attr("x", d => x(d.branch))
-        .attr("width", x.bandwidth())
-        .attr("y", d => y(d.num))
-        .attr("height", d => y(0) - y(d.num));
+        .attr("x", d => x(d.branch))  // x position attribute
+        .attr("width", x.bandwidth())  // this width is the width attr on the element
+        .attr("y", d => y(d.num))  // y position attribute
+        .attr("height", d => y(0) - y(d.num));  // this height is the height attr on element
+    
+    bar.append('text') // add labels
+        .text(d => d.num)
+        .attr('x', d => x(d.branch) + (x.bandwidth()/2))
+        .attr('y', d => y(d.num) + 15)
+        .attr('text-anchor', 'middle')
+        .style('fill', 'white');
 
 });
 
