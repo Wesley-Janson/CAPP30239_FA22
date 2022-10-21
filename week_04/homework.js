@@ -1,8 +1,4 @@
-/* Homework 2
-   Line Chart Exercise
-*/
-
-/* D3 Line Chart */
+/* Homework 2-D3 Line Chart Exercise*/
 
 // Variables are on top because they are not dependant on data
 const height = 500,
@@ -17,16 +13,16 @@ d3.csv('long-term-interest-canada.csv').then(data => {
     let timeParse = d3.timeParse("%Y-%m");
 
     for (let d of data) {
-        d.Value = +d.Value;
-        d.Date = timeParse(d.Date);
+        d.Num = +d.Num;
+        d.Month = timeParse(d.Month);
     }
 
     let x = d3.scaleTime()
-        .domain(d3.extent(data, d => d.Date))
+        .domain(d3.extent(data, d => d.Month))
         .range([margin.left, width - margin.right]);
 
     let y = d3.scaleLinear()
-        .domain([0,d3.max(data, d => d.Value)])
+        .domain([0,d3.max(data, d => d.Num)])
         .range([height - margin.bottom, margin.top]);
 
     svg.append("g")
@@ -45,7 +41,7 @@ d3.csv('long-term-interest-canada.csv').then(data => {
       .attr("y", height)
       .attr("dx", "0.5em")
       .attr("dy", "-0.5em") 
-      .text("Year");
+      .text("Month");
     
     svg.append("text")
       .attr("class", "y-label")
@@ -54,11 +50,11 @@ d3.csv('long-term-interest-canada.csv').then(data => {
       .attr("dx", "-0.5em")
       .attr("y", 10)
       .attr("transform", "rotate(-90)")
-      .text("Interest rate");
+      .text("Interest Rate");
 
     let line = d3.line()
-        .x(d => x(d.Date))
-        .y(d => y(d.Value));
+        .x(d => x(d.Month))
+        .y(d => y(d.Num));
 
     svg.append("path")
         .datum(data)
