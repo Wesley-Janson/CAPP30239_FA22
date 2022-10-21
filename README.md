@@ -19,3 +19,10 @@ repository will have folders for each corresponding week.
 * Develop initial D3.js bar chart
 * Create Github page for this course
 * Finish homework creating example bar chart using HTML and D3.js
+
+# Week 4
+* Discuss how to effectively implement data visualizations
+* Dive deeper into D3.js
+* Create line, multiline, and area charts
+* Finish homework making line chart
+* Finish Project 2: Analyzing Existing Data Visualizations
