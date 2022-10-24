@@ -14,13 +14,13 @@ repository will have folders for each corresponding week.
 * Begin using JavaScript interacting with HTML
 * Create final "Dear Data" visualization
 
-# Week 3
+# [Week 3](https://wesley-janson.github.io/CAPP30239_FA22/week_03)
 * Discuss differing data visualization/art styles
 * Develop initial D3.js bar chart
 * Create Github page for this course
 * Finish homework creating example bar chart using HTML and D3.js
 
-# Week 4
+# [Week 4](https://wesley-janson.github.io/CAPP30239_FA22/week_04)
 * Discuss how to effectively implement data visualizations
 * Dive deeper into D3.js
 * Create line, multiline, and area charts
