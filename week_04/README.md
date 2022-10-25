@@ -13,3 +13,4 @@ Here you will find numerous html and JavaScript files
 	* "long-term-interest-canada.csv" acts as the data for this assignment.
 	
 * Project 2:
+	* Analyze three existing data visualizations that are publicly accessable, and detail information surrounding them in "Project_2.pdf".
