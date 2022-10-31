@@ -1,4 +1,5 @@
 # Data Folder
+This folder contains data relevant to my final Data Visualization project. 
 
 ## COVID-relevant Data
 * This data allows for a further exploration into developments of PCE inflation during COVID-19. While once again there is a 
