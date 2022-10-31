@@ -2,8 +2,8 @@
 #' Project: Data Viz Final Project-Top 10 Prices and Weights
 #' Title: top_prices_weights.R
 #' Author(s): Wesley Janson
-#' Last Edited: 10/25/2022
-#' Description: Tabulate the top 10 components based on prices and weights
+#' Last Edited: 10/30/2022
+#' Description: Filter data to create end-use CSVs for analysis
 ####
 
 ##### Check for needed packages, install if needed and load in
@@ -13,7 +13,7 @@ check.packages<-function(pkg){
     install.packages(new.pkg, dependencies=TRUE)
   sapply(pkg, require, character.only=TRUE)
 }
-packages_needed<-c("DBI","RPostgreSQL","tidyverse","entropy","Dict")
+packages_needed<-c("tidyverse","entropy","Dict")
 check.packages(packages_needed)
 
 setwd("/Users/wrjanson/Documents/UChicago/CAPP30239_FA22/week_03/")  # Set your working directory

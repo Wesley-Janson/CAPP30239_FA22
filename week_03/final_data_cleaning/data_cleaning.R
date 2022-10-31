@@ -5,7 +5,13 @@
 #' Last Edited: 10/14/2022
 #' Description: Cleans up prices and weights data and exports as CSV
 ####
-
+check.packages<-function(pkg){
+  new.pkg<-pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg))
+    install.packages(new.pkg, dependencies=TRUE)
+  sapply(pkg, require, character.only=TRUE)
+}
+packages_needed<-c("tidyverse", "readxl")
 
 setwd("/Users/wrjanson/Documents/UChicago/CAPP30239_FA22/week_03/final_data_cleaning/")  # Set your working directory
 
