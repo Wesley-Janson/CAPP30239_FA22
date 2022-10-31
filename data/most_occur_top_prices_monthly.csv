@@ -7,20 +7,20 @@ Eggs,34
 Food produced and consumed on farms (6),34
 Spectator sports,34
 Motor vehicle rental,32
-Portfolio management and investment advice services,30
-Air transportation (64),29
+Portfolio management and investment advice services,31
+Air transportation (64),28
 Watches,28
 Film and photographic supplies,27
 Other imputed commissions,27
 "Video discs, tapes, and permanent digital downloads",25
 Commercial banks,24
+Jewelry,23
 Exchange-listed equities,22
-Jewelry,22
+Natural gas (28),22
 Lubricants and fluids,21
-Natural gas (28),21
 Sewing items,21
 Clothing materials,20
-Dishes and flatware,19
+Dishes and flatware,20
 Hotels and motels,19
 Other fuels,19
 Newspapers and periodicals,18
@@ -31,7 +31,7 @@ Beef and veal,16
 Children's and infants' clothing (12),14
 "Trust, fiduciary, and custody activities",14
 Vegetables (fresh),13
-Motor vehicle leasing,11
+Motor vehicle leasing,12
 Photographic equipment,11
 Poultry,11
 "Repair of furniture, furnishings, and floor coverings",11
@@ -45,6 +45,7 @@ Pleasure boats,9
 Recreational books (part of 90),9
 Repair of household appliances,9
 Bicycles and accessories,8
+Elementary and secondary school lunches,8
 Fruit (fresh),8
 Intercity buses,8
 Major household appliances,8
@@ -58,7 +59,6 @@ Pork,8
 Tax preparation and other related services,8
 Used light trucks,8
 Carpets and other floor coverings,7
-Elementary and secondary school lunches,7
 Fish and seafood,7
 Household paper products,7
 Men's and boys' clothing (11),7
@@ -82,24 +82,26 @@ Motion picture theaters,5
 Other medical products,5
 Small electric household appliances,5
 "Audio discs, tapes, vinyl, and permanent digital downloads",4
+"Clothing repair, rental, and alterations",4
 "Flowers, seeds, and potted plants",4
 Food supplied to civilians,4
 Net motor vehicle and other transportation insurance (116),4
 Processed fruits and vegetables,4
+Repair and hire of footwear,4
 Sugar and sweets,4
 Therapeutic medical equipment,4
 Video and audio streaming and rental,4
 "Calculators, typewriters, and other information processing equipment",3
-"Clothing repair, rental, and alterations",3
 Domestic services,3
 Final consumption expenditures of nonprofit institutions serving households (NPISHs) (132),3
 Intracity mass transit,3
+Miscellaneous personal care services,3
 Other meats,3
 Prescription drugs,3
 Processed dairy products,3
-Repair and hire of footwear,3
 Taxicabs and ride sharing services,3
 Cereals,2
+Corrective eyeglasses and contact lenses,2
 Educational books (96),2
 Electric appliances for personal care,2
 Electricity (27),2
@@ -109,7 +111,6 @@ Garbage and trash collection,2
 Internet access (72),2
 "Land-line telephone services, long-distance charges",2
 "Mineral waters, soft drinks, and vegetable juices",2
-Miscellaneous personal care services,2
 Other household services,2
 "Other social assistance, not elsewere classified",2
 Outdoor equipment and supplies,2
@@ -121,7 +122,6 @@ Spirits,2
 Televisions,2
 "Amusement parks, campgrounds, and related recreational services",1
 "Coffee, tea, and other beverage materials",1
-Corrective eyeglasses and contact lenses,1
 Cosmetic / perfumes / bath / nail preparations and implements,1
 Elementary and secondary schools,1
 Fats and oils,1
@@ -142,3 +142,4 @@ Social advocacy and civic and social organizations,1
 Tires,1
 Tobacco (127),1
 Vocational rehabilitation services,1
+"Tools, hardware, and supplies",1
