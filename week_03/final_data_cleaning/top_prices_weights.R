@@ -206,3 +206,13 @@ covid_prices10 <- merge(covid_prices10, weights_long, by=c("Date", "Component"))
 write_csv(covid_prices10, "covid_prices_weights.csv")
 
 
+covid_price_change <- as.data.frame(cbind(covid_annual[,1],apply(covid_annual[,-1], 2, function(y) 100 * y / y[1])))
+covid_var <- covid_price_change[,-1] %>%
+  summarise_all(var)
+covid_var10 <- covid_var[which(covid_var %in% sort(as.data.frame(t(covid_var))$V1, 
+                                                         decreasing = TRUE)[1:10])]
+covid_price_change <- covid_price_change %>%
+  select(colnames(covid_var10))
+
+
+
