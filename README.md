@@ -28,3 +28,6 @@ repository will have folders for each corresponding week.
 * Finish Project 2: Analyzing Existing Data Visualizations
 
 # [Week 5](https://wesley-janson.github.io/CAPP30239_FA22/week_05)
+
+
+# [Week 6](https://wesley-janson.github.io/CAPP30239_FA22/week_06)
