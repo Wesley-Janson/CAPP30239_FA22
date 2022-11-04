@@ -36,7 +36,7 @@ d3.json('climate.json').then((data) => {
             .data(bins, d => d.x0)
         .join(
             enter => {
-            let g = enter.append("g")
+            let g = enter.append("g")  //Putting data on the page
 
             g.append("rect")
                 .attr("x", d => x(d.x0) + padding / 2)
@@ -60,7 +60,7 @@ d3.json('climate.json').then((data) => {
                 .attr("y", d => y(d.length) - 5);
             },
             update => {
-            update.select("rect")
+            update.select("rect") //Changing position and height of bars
                 .transition()
                 .duration(750)
                 .attr("y", d => y(d.length))
@@ -80,7 +80,7 @@ d3.json('climate.json').then((data) => {
                 .attr("y", height - margin.bottom);
 
             exit.select("text")
-                .text("");
+                .text("");    // Removing text
 
             exit.transition()
                 .duration(750)
@@ -90,12 +90,12 @@ d3.json('climate.json').then((data) => {
 
         svg.selectAll("foreignObject").remove();
 
-        let temp = d3.mean(data[m], d => d.average).toFixed(1);
+        let temp = d3.mean(data[m], d => d.average).toFixed(1);   // Use stats function to put in string, "toFixed" rounds to n decimals
         let str = `The average temperature in 
-                    <b style="text-transform:capitalize;">${m} 2020</b> was 
+                    <b style="text-transform:capitalize;">${m} 2022</b> was 
                     <b>${temp}℉</b>.`
 
-        svg.append("foreignObject")
+        svg.append("foreignObject")  //Can add line breaks, holding text etc.
           .attr("x", 10)
           .attr("y", 100)
           .attr("width", 120)
@@ -107,7 +107,7 @@ d3.json('climate.json').then((data) => {
 
     updateChart("january");
 
-    d3.selectAll("select")
+    d3.selectAll("select") // EVENT: when dropdown changes. On event, we select different value (month in this case) 
         .on("change", function (event) {
             const m = event.target.value;
             updateChart(m); 

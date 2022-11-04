@@ -18,7 +18,7 @@ d3.json('budget-2022.json').then((data) => {
   
     svg.append("g")
       .attr("stroke", "white")
-      .attr("stroke-width", 2)
+      .attr("stroke-width", 2) // 20-22 Make white separators between groups
       .attr("stroke-linejoin", "round")
       .selectAll("path")
       .data(arcs)

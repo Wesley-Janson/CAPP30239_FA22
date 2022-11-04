@@ -5,7 +5,7 @@ const height = 400,
     margin = ({ top: 25, right: 10, bottom: 50, left: 10 }),
     padding = 1;
 
-const svg = d3.select("#chart")
+const svg = d3.select("#chart")  // Just "create" will not create it, need to append it
     .append("svg")
     .attr("viewBox", [0, 0, width, height]);
 
