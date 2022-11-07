@@ -1,7 +1,7 @@
 /* 
 Wesley Janson
 CAPP 30239 FALL 2022
-First chart Homework-Week 3
+Chart 1 Homework-Week 6
 Chart: Histogram of Age Breakdown
 */
 
@@ -58,5 +58,15 @@ d3.json('a3cleanedonly2015.json').then((data) => {
     .attr("y", d => y(d.length) - 5)
     .attr("text-anchor", "middle")
     .attr("fill", "#333");
+
+    // Create x-axis label
+    svg.append("text")
+    .attr("class", "x-label")
+    .attr("text-anchor", "end")
+    .attr("x", (width/2)+45)
+    .attr("y", height)
+    .attr("dx", "0.5em")
+    .attr("dy", "-0.5em") 
+    .text("Age of Victims");
 
 });
