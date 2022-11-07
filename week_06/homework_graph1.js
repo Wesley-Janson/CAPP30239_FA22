@@ -5,12 +5,12 @@ Chart 1 Homework-Week 6
 Chart: Histogram of Age Breakdown
 */
 
-const height = 400,
-    width = 600,
+const height = 250,
+    width = 400,
     margin = ({ top: 25, right: 10, bottom: 50, left: 10 }),
     padding = 1;
 
-const svg = d3.select("#chart")
+const svg = d3.select("#hist-chart")
     .append("svg")
     .attr("viewBox", [0, 0, width, height]);
 
@@ -34,8 +34,6 @@ d3.json('a3cleanedonly2015.json').then((data) => {
   const bins = d3.bin()
     .thresholds(10)
     .value(d => d.Age)(data);
-  
-  console.log(bins);
 
   let g = binGroups.selectAll("g")
     .data(bins)

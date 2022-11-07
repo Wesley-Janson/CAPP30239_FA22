@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Visualization-Week 6 Homework</title>
+  <title>Week 6 Homework-Data Visualization</title>
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,600" rel="stylesheet">
   <style>
      * {
@@ -43,32 +43,51 @@
       font-size: 10px;
     }
 
-    #chart {
-      width: 100%;
+    .ex { 
+      cursor: default; 
     }
-
-    svg {
-      height: 70vh;
+    
+    .ex path {
+      stroke-width: 1.5;
+      opacity: 0.75;
     }
 
   </style>
 </head>
 
 <body>
-        <div id="container">
-          <h1>US Guns Deaths at the Hands of Police Officers</h1>
-          <p>These graphs set out to provide some information regarding police-perpetrated deaths in the United States in 2015, 
-            and uses data from the a3cleanedonly2015.json file.
-          </p>
-          <div id="chart"></div>
-        </div>
-      </body>
-      <script src="https://d3js.org/d3.v7.min.js"></script>
-      <script src="homework_graph1.js"></script>
-      <p>This graph above shows the distribution of the ages of the victims of police gun violence. We see results that one would 
-        expect: those between 20-50 years old are most commonly killed. However, some stark (and incredibly sad) findings are 
-        shown-one person under the age of 10, and numerous senior citizens were killed by police officers.
-      </p>
-      <script src="homework_graph2.js"></script>
-
+  <div id="container">
+    <h1>US Guns Deaths at the Hands of Police Officers</h1>
+    <h3>What age are victims?</h3>
+    <p>
+      These graphs set out to provide some information regarding police-perpetrated deaths in the United States in 2015, 
+      and uses data from the a3cleanedonly2015.json file.
+    </p>
+    <div id="hist-chart"></div>
+    <p>
+      This graph above shows the distribution of the ages of the victims of police gun violence. We see results that one would 
+      expect: those between 20-50 years old are most commonly killed. However, some stark (and incredibly sad) findings are 
+      shown-one person under the age of 10, and numerous senior citizens were killed by police officers.
+    </p>
+  </div>
+  <div id="container">
+    <h3>What race are victims?</h3>
+    <div id="donut-chart"></div>
+    <p>
+      This second graph is a good example of how aggregate statistics without context can be very misleading. In aggregate, 
+      white people are the victims of police gun violence the most often; however, per capita statistics would be a better comparison.
+    </p>
+  </div>
+  <div id="container">
+    <h3>What time of year do these shootings happen?</h3>
+    <div id="ts-chart"></div>
+    <p>
+      This last graph...
+    </p>
+  </div>
+</body>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="homework_graph1.js"></script>
+<script src="homework_graph2.js"></script>
+<script src="homework_graph3.js"></script>
 </html>

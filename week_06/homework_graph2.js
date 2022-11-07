@@ -7,30 +7,34 @@ Chart: Donut Chart of Race Breakdown
 
 
 d3.json('a3cleanedonly2015.json').then((data) => {
-    const height = 400,
-      width = 600,
+    const height = 550,
+      width = 650,
       innerRadius = 125,
       outerRadius = 175,
       labelRadius = 200;
     
-    const race_count = {"":0, "Asian":0, "Black":0, "Hispanic":0, "Native":0, "Other":0, "White":0}
-    for(var key in data) {
-    for (var key1 in data[key]) {
-        if (key1=="Race") {
-            race_count[data[key][key1]] += 1
-            }
-        }   
-    }
-    //console.log(race_count)
-    const race_data = [Object.keys(race_count), Object.values(race_count)]
-    //console.log(race_data)
+    let pieData = [
+    { race: "", count: 0 },
+    { race: "Asian", count: 0 },
+    { race: "Black", count: 0 },
+    { race: "Hispanic", count: 0 },
+    { race: "Native", count: 0 },
+    { race: "Other", count: 0 },
+    { race: "White", count: 0 },
+    ];
 
-    const arcs = d3.pie().value(d => d.race_data)(race_data);
+    for(var d of data) {
+        let pd = pieData.find(pd => pd.race == d["Race"]);
+        pd.count += 1;
+    }
+
+
+    const arcs = d3.pie().value(d => d.count)(pieData);
     const arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
     const arcLabel = d3.arc().innerRadius(labelRadius).outerRadius(labelRadius);
-    //console.log(arcs)
 
-    const svg = d3.select("#chart")
+
+    const svg = d3.select("#donut-chart")
       .append("svg")
       .attr("width", width)
       .attr("height", height)
@@ -56,9 +60,8 @@ d3.json('a3cleanedonly2015.json').then((data) => {
       .attr("transform", d => `translate(${arcLabel.centroid(d)})`)
       .selectAll("tspan")
       .data(d => {
-        return [Object.keys(race_count), Object.values(race_count)];
+        return [d.data.race, d.data.count];
       })
-      //.data([Object.keys(race_count), Object.values(race_count)])
       .join("tspan")
       .attr("x", 0)
       .attr("y", (d, i) => `${i * 1.1}em`)
