@@ -55,10 +55,10 @@ d3.json('a3cleanedonly2015.json').then((data) => {
       .join("text")
       .attr("transform", d => `translate(${arcLabel.centroid(d)})`)
       .selectAll("tspan")
-      //.data(d => {
-      //  return [d.race_data.keys, d.race_data.values];
-      //})
-      .data([Object.keys(race_count), Object.values(race_count)])
+      .data(d => {
+        return [Object.keys(race_count), Object.values(race_count)];
+      })
+      //.data([Object.keys(race_count), Object.values(race_count)])
       .join("tspan")
       .attr("x", 0)
       .attr("y", (d, i) => `${i * 1.1}em`)
