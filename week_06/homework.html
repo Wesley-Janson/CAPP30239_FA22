@@ -23,12 +23,6 @@
       font-weight: 600;
     }
 
-    p, select, label {
-      font-size: 16px;
-      text-transform: none;
-      max-width: 700px;
-    }
-
     input {
       min-width: 300px;
     }
@@ -42,6 +36,15 @@
       vertical-align: super;
       font-size: 10px;
     }
+    
+    .y-axis path.domain { 
+      display: none; 
+    }
+
+    .y-axis line {
+      stroke: #eee;
+      stroke-dasharray: 1px;
+    }
 
     .ex { 
       cursor: default; 
@@ -50,6 +53,15 @@
     .ex path {
       stroke-width: 1.5;
       opacity: 0.75;
+    }
+
+    .highlight path {
+      stroke: steelblue;
+      opacity: 1;
+    }
+
+    .highlight text { 
+      fill: steelblue; 
     }
 
   </style>
@@ -80,7 +92,7 @@
   </div>
   <div id="container">
     <h3>What time of year do these shootings happen?</h3>
-    <div id="ts-chart"></div>
+    <div id="stack-chart"></div>
     <p>
       This last graph...
     </p>
