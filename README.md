@@ -28,6 +28,11 @@ repository will have folders for each corresponding week.
 * Finish Project 2: Analyzing Existing Data Visualizations
 
 # [Week 5](https://wesley-janson.github.io/CAPP30239_FA22/week_05)
-
+* Create "3 Minute Overview" of final project, including visualization ideas
 
 # [Week 6](https://wesley-janson.github.io/CAPP30239_FA22/week_06)
+* Meet to discuss final project graph ideas, get roadmap of what's ahead
+* Work on D3 charts such as stacked bar, donut, and histograms
+* Create [3 charts](https://wesley-janson.github.io/CAPP30239_FA22/week_06/homework.html) from police shootings data
+
+# [Week 7](https://wesley-janson.github.io/CAPP30239_FA22/week_07)
