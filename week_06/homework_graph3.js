@@ -58,14 +58,14 @@ d3.csv("clean_ts_data.csv").then( data => {
 
   legendGroup
     .append("circle")
-    .attr("cx", (d, i) => (10 + (i * 75)))
+    .attr("cx", (d, i) => (10 + (i * 105)))
     .attr("cy",10)
     .attr("r", 3)
     .attr("fill", (d, i) => color(i));
 
   legendGroup
     .append("text")
-    .attr("x", (d, i) => (15 + (i * 75)))
+    .attr("x", (d, i) => (15 + (i * 105)))
     .attr("y",12.5)
     .text((d, i) => subgroups[i])
     .style("font-size", 8);

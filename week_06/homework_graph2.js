@@ -22,12 +22,12 @@ d3.json('a3cleanedonly2015.json').then((data) => {
     { race: "Other", count: 0 },
     { race: "White", count: 0 },
     ];
+    
 
     for(var d of data) {
         let pd = pieData.find(pd => pd.race == d["Race"]);
         pd.count += 1;
     }
-
 
     const arcs = d3.pie().value(d => d.count)(pieData);
     const arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
@@ -64,7 +64,7 @@ d3.json('a3cleanedonly2015.json').then((data) => {
       })
       .join("tspan")
       .attr("x", 0)
-      .attr("y", (d, i) => `${i * 1.1}em`)
+      .attr("y", (d, i) => `${i * 1.5}em`)
       .attr("font-weight", (d, i) => i ? null : "bold")
       .text(d => d);
   
