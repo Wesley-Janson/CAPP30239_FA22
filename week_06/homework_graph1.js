@@ -57,14 +57,4 @@ d3.json('a3cleanedonly2015.json').then((data) => {
     .attr("text-anchor", "middle")
     .attr("fill", "#333");
 
-    // Create x-axis label
-    // svg.append("text")
-    // .attr("class", "x-label")
-    // .attr("text-anchor", "end")
-    // .attr("x", (width/2)+45)
-    // .attr("y", height)
-    // .attr("dx", "0.5em")
-    // .attr("dy", "-0.5em") 
-    // .text("Age");
-
 });

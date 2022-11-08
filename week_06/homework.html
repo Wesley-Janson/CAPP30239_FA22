@@ -17,60 +17,13 @@
       margin: 0 auto;
     }
 
-    h1  {
-      font-size: 32px;
-      text-transform: none;
-      font-weight: 600;
-    }
-
-    input {
-      min-width: 300px;
-    }
-
-    span {
-      text-transform: uppercase;
-      font-size: 14px;
-    }
-
-    label, tspan {
-      vertical-align: super;
-      font-size: 10px;
-    }
-    
-    .y-axis path.domain { 
-      display: none; 
-    }
-
-    .y-axis line {
-      stroke: #eee;
-      stroke-dasharray: 1px;
-    }
-
-    .ex { 
-      cursor: default; 
-    }
-    
-    .ex path {
-      stroke-width: 1.5;
-      opacity: 0.75;
-    }
-
-    .highlight path {
-      stroke: steelblue;
-      opacity: 1;
-    }
-
-    .highlight text { 
-      fill: steelblue; 
-    }
-
   </style>
 </head>
 
 <body>
   <div id="container">
     <h1>US Guns Deaths at the Hands of Police Officers</h1>
-    <h3>What age are victims?</h3>
+    <h2>What age are victims?</h2>
     <p>
       These graphs set out to provide some information regarding police-perpetrated deaths in the United States in 2015, 
       and uses data from the a3cleanedonly2015.json file.
@@ -83,7 +36,7 @@
     </p>
   </div>
   <div id="container">
-    <h3>What race are victims?</h3>
+    <h2>What race are victims?</h2>
     <div id="donut-chart"></div>
     <p>
       This second graph is a good example of how aggregate statistics without context can be very misleading. In aggregate, 
@@ -91,10 +44,13 @@
     </p>
   </div>
   <div id="container">
-    <h3>What time of year do these shootings happen?</h3>
+    <h2>Dispelling the myth of public safety issues</h2>
     <div id="stack-chart"></div>
     <p>
-      This last graph...
+      This last graph sets out to dispel the myth that those who die at the hands of police officers are either i) suffering from mental
+      distress or ii) fleeing from police, leading to a public safety issue. You can see that by and large, neither statements have any 
+      truth. A large majority (91%) are not fleeing or suffering from a mental health issue (79%). All of that said, neither of those
+      conditions alone justify the police taking their life. 
     </p>
   </div>
 </body>
