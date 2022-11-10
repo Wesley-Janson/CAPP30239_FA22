@@ -3,16 +3,19 @@ CAPP 30239 Final Project
 Figure 1 - Variable Area Graph
 */
 
+d3 = require("d3@6")
 import {swatches} from "@d3/color-legend"
-data = Object.assign(d3.csvParse(await FileAttachment('through-the-looking-glass@1.csv').text(), d3.autoType));
 
-chart = {  
+data = d3.csv(clean_ts_data.csv).then( data => {
+    height = 500
+    margin = ({top: 0, right: 20, bottom: 30, left: 20})
+
     const svg = d3.create("svg")
         .attr("viewBox", [0, 0, width, height]);
-    
+
     svg.append("g")
-        .selectAll("line")
-        .data(chapters)
+        .selectAll("line"),
+        .data(chapters
         .join("line")
             .attr("x1", d => x(d.chapter))
             .attr("y1", 0)
@@ -21,7 +24,7 @@ chart = {
             .style("stroke-width", 1)
             .style("stroke", "#333")
             .style("fill", "none");
-  
+
     svg.append("g")
         .selectAll("path")
         .data(series)
@@ -31,7 +34,7 @@ chart = {
             .attr("d", area)
         .append("title")
             .text(({key}) => key);
-    
+
     svg.append("g")
         .selectAll("text")
         .data(chapters)
@@ -41,12 +44,13 @@ chart = {
             .attr("y", d => y(d.maxY))
             .attr("y", 30)
             .text(d => d.chapter);
-  
+
     svg.append("g")
         .call(xAxis);
-  
+
     return svg.node();
 }
+
 
 chapters = {
     let arr = [];
@@ -118,7 +122,7 @@ area = d3.area()
     .y1(d => y(d[1]))
 
 x = d3.scaleLinear()
-    .domain(d3.extent(data, d => d.chapter))
+    .domain(d3.extent(data, d => d.date))
     .range([margin.left, width - margin.right])
 
 y = d3.scaleLinear()
@@ -150,10 +154,5 @@ xAxis = g => g
     .call(d3.axisBottom(x))
     .call(g => g.select(".domain").remove())
 
-height = 500
-
-margin = ({top: 0, right: 20, bottom: 30, left: 20})
-
-d3 = require("d3@6")
 
 

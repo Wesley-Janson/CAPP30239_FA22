@@ -10,6 +10,16 @@ d3.json("a3cleanedonly2015.json").then(data => {
       { gender: "Female", count: 0 },
       { gender: "Other", count: 0 },
     ];
+
+    console.log(genderData)
+
+    let newArr = [];
+
+    for (var g of genderData) {
+      newArr.push(g.gender);
+    }
+
+    console.log("new arr", newArr)
   
     // Create array of count by race (excluding "")
     // Population data in percent from US Census 2020
@@ -49,6 +59,7 @@ d3.json("a3cleanedonly2015.json").then(data => {
       let date = d3.timeParse("%x")(d.Date);
       let i = date.getMonth();
   
+      // More general way to create object (using empty object)
       if(!(i in monthData)) {
         monthData[i] = {
           // month: date.toLocaleString('default', { month: 'long' }),
