@@ -1,5 +1,3 @@
-/* map example */
-
 const tooltip = d3.select("body")
   .append("div")
   .attr("class", "svg-tooltip")
@@ -27,9 +25,9 @@ Promise.all([
 
   const counties = topojson.feature(us, us.objects.counties);
 
-  // Quantize evenly breakups domain into range buckets (set up color for buckets)
+  // Quantize evenly breakups domain into range buckets
   const color = d3.scaleQuantize()
-    .domain([0, 10]).nice()   // 10 buckets, each by 1
+    .domain([0, 10]).nice()
     .range(d3.schemeBlues[9]);
 
   const path = d3.geoPath();
@@ -49,7 +47,7 @@ Promise.all([
     .selectAll("path")
     .data(counties.features)
     .join("path")
-    .attr("fill", d => (d.id in dataById) ? color(dataById[d.id].rate) : '#ccc')  // ? is ifelse statement
+    .attr("fill", d => (d.id in dataById) ? color(dataById[d.id].rate) : '#ccc')
     .attr("d", path)
     .on("mousemove", function (event, d) {
       let info = dataById[d.id];

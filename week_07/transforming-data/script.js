@@ -2,90 +2,89 @@
 
 d3.json("a3cleanedonly2015.json").then(data => {
     // Always start by console.logging the data
-    console.log(data);
-
-    // Create a new object to transform data
-    let newData = [
-        { "Gender": "Male", "Totals": 0 },
-        { "Gender": "Female", "Totals": 0 },
-        { "Gender": "Other", "Totals": 0 },
-    ]
-
+    console.log("Raw data", data);
+  
+    // Create a array of count by gender
+    let genderData = [
+      { gender: "Male", count: 0 },
+      { gender: "Female", count: 0 },
+      { gender: "Other", count: 0 },
+    ];
+  
+    // Create array of count by race (excluding "")
+    // Population data in percent from US Census 2020
+    let raceData = [
+      { race: "Asian", count: 0, populationPercent: 0.061 },
+      { race: "Black", count: 0, populationPercent: 0.136 },
+      { race: "Hispanic", count: 0, populationPercent: 0.189 },
+      { race: "Native", count: 0, populationPercent: 0.016 },
+      { race: "Other", count: 0, populationPercent: 0.029 },
+      { race: "White", count: 0, populationPercent: 0.593 },
+    ];
+  
+    // Create empty array for month data
+    // We will populate the values in the loop below
+    let monthData = [];
+    let dataLength = data.length;
+  
     for (let d of data) {
-        if (d.Gender === "Male") {
-            newData[0].Totals += 1; // newData[0] is Male (line 6)
-        } else if (d.Gender === "Female") {
-            newData[1].Totals += 1; // newData[1] is Female (line 10)
-        } else {
-            newData[2].Totals += 1; // newData[2] is Other (line 14)
-        }
+      // Count gender, populate genderData (8)
+      if (d.Gender === "Male") {
+        genderData[0].count += 1;
+      } else if (d.Gender === "Female") {
+        genderData[1].count += 1;
+      } else {
+        genderData[2].count += 1;
+      }
+  
+      // Count race, if race is noted
+      if (d["Race"] !== "") {
+        let nd = raceData.find(nd => nd.race == d["Race"]);
+        nd.count += 1;
+      } else {
+        dataLength = dataLength - 1;
+      }
+  
+      // Count by month (assumes only one year of data)
+      let date = d3.timeParse("%x")(d.Date);
+      let i = date.getMonth();
+  
+      if(!(i in monthData)) {
+        monthData[i] = {
+          // month: date.toLocaleString('default', { month: 'long' }),
+          month: d3.timeParse("%Y-%m")(date.toISOString().substr(0, 7)),
+          count: 0
+        };
+      }
+  
+      monthData[i].count++;
     };
-
-    console.log(newData); // view transformed data
-
-    /* Note: if you are matching on a more complex data point
-       like race, you can also use the find function in js
-       which is more condensed. See below */
+  
+    // Normalize race data for population percentage
+    for (var d of raceData) {
+      d.dataPercent = d.count / dataLength;
+      d.ratio = 1 - (d.dataPercent / d.populationPercent);
+    }
+  
+    console.log("Gender data", genderData);
+    console.log("Race data", raceData);
+    console.log("Month data", monthData);
+  
+    bar(genderData, "#genderChart", "gender", "count");
+    bar(raceData, "#raceChart", "race", "count");
+    line(monthData, "#monthChart", "month", "count", 60)
     
-    // let newData = [
-    //     { race: "", count: 0 },
-    //     { race: "Asian", count: 0 },
-    //     { race: "Black", count: 0 },
-    //     { race: "Hispanic", count: 0 },
-    //     { race: "Native", count: 0 },
-    //     { race: "Other", count: 0 },
-    //     { race: "White", count: 0 },
-    // ];
-
-    // for(var d of data) {
-    //      let nd = newData.find(nd => nd.race == d["Race"]);
-    //      nd.count += 1;
-    // }
-    // console.log(newData)
-
-    const height = 600,
-          width = 800,
-          margin = ({ top: 25, right: 30, bottom: 35, left: 50 });
-
-    let svg = d3.select("#chart")
-        .append("svg")
-        .attr("viewBox", [0, 0, width, height]); 
-    
-    let x = d3.scaleBand()
-        .domain(newData.map(d => d.Gender)) // Use array from line 8 (newData) and Gender from newData
-        .range([margin.left, width - margin.right]) 
-        .padding(0.1);
-    
-    let y = d3.scaleLinear()
-        .domain([0, d3.max(newData, d => d.Totals)]).nice() // uses newData as data and Totals from newData
-        .range([height - margin.bottom, margin.top]); 
-    
-    svg.append("g")
-        .attr("transform", `translate(0,${height - margin.bottom + 5})`)
-        .call(d3.axisBottom(x));
-    
-    svg.append("g")
-        .attr("transform", `translate(${margin.left - 5},0)`)
-        .call(d3.axisLeft(y));
-
-    let bar = svg.selectAll(".bar")
-        .append("g")
-        .data(newData) // Update data to newData
-        .join("g")
-        .attr("class", "bar");
-
-    bar.append("rect") 
-        .attr("fill", "steelblue")
-        .attr("x", d => x(d.Gender)) // Gender
-        .attr("width", x.bandwidth()) 
-        .attr("y", d => y(d.Totals)) // Totals
-        .attr("height", d => y(0) - y(d.Totals)); // Totals
-    
-    bar.append('text') 
-        .text(d => d.Totals) // Totals
-        .attr('x', d => x(d.Gender) + (x.bandwidth()/2)) // Gender
-        .attr('y', d => y(d.Totals) + 15) // Totals
-        .attr('text-anchor', 'middle')
-        .style('fill', 'white');
-
-});
+    let dc = DivergingBarChart(raceData, {
+      x: d => d.ratio,
+      y: d => d.race,
+      height: 400,
+      colors: d3.schemeRdBu[3]
+    })
+  
+    document.getElementById("divergingChart").appendChild(dc);
+  
+    let sourceHTML = `<p>Data Source: <a href="https://github.com/washingtonpost/data-police-shootings">Washington Post</a></p>`;
+    d3.selectAll(".chart")
+      .append("div")
+      .html(sourceHTML);
+  });
