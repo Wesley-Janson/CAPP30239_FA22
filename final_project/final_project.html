@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAPP 30239 Final Project</title>
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,600" rel="stylesheet">
+  <style>
+     * {
+      font-family: 'Work Sans',Arial, Helvetica, sans-serif;
+    }
+
+    #container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <h1>US Guns Deaths at the Hands of Police Officers</h1>
+    <h2>What age are victims?</h2>
+    <p>
+      These graphs set out to provide some information regarding police-perpetrated deaths in the United States in 2015, 
+      and uses data from the a3cleanedonly2015.json file.
+    </p>
+    <div id="hist-chart"></div>
+    <p>
+      This graph above shows the distribution of the ages of the victims of police gun violence. We see results that one would 
+      expect: those between 20-50 years old are most commonly killed. However, some stark (and incredibly sad) findings are 
+      shown-one person under the age of 10, and numerous senior citizens were killed by police officers.
+    </p>
+  </div>
+</body>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="variable_area.js"></script>
+</html>
