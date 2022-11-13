@@ -13,7 +13,7 @@ check.packages<-function(pkg){
     install.packages(new.pkg, dependencies=TRUE)
   sapply(pkg, require, character.only=TRUE)
 }
-packages_needed<-c("tidyverse","entropy","Dict")
+packages_needed<-c("tidyverse","entropy","Dict","tfplot")
 check.packages(packages_needed)
 
 setwd("/Users/wrjanson/Documents/UChicago/CAPP30239_FA22/week_03/")  # Set your working directory
@@ -194,6 +194,11 @@ covid_prices10 <- covid_prices %>%
   filter(Date>"2020-01-01")
 
 covid_prices10 <- as.data.frame(cbind(covid_prices10[,1],apply(covid_prices10[,-1], 2, function(y) 100 * y / y[1])))
+colnames(covid_prices10) <- c("date","New Light Trucks","Gasoline/Fuel","Prescription Drugs","Rented Housing",
+                              "Owned Housing","Physician Services","Goodwill Medical Services","Purchased Meals",
+                              "Health Insurance (Net)","Goodwill Services")
+write_csv(covid_prices10, "covid_prices.csv")
+
 
 covid_prices10 <- covid_prices10 %>%
   pivot_longer(cols = c(2:11), names_to = "Component", values_to = "Index Value")
@@ -214,5 +219,34 @@ covid_var10 <- covid_var[which(covid_var %in% sort(as.data.frame(t(covid_var))$V
 covid_price_change <- covid_price_change %>%
   select(colnames(covid_var10))
 
+
+### Loop through each year and Find Top 10 Weights
+
+##### Get Percentiles
+covid_pctiles <- covid_annual %>%
+  pivot_longer(cols = -"Date", names_to = "Component", values_to = "Index Value")
+
+weights_long <- covid_weights %>%
+  pivot_longer(cols = -"Date", names_to = "Component", values_to = "Weight")
+
+covid_pctiles <- merge(covid_pctiles, weights_long, by=c("Date", "Component"))
+
+all_pctiles_prices <- covid_pctiles %>%
+  group_by(Date) %>%
+  summarise(p1 = quantile(`Index Value`, 0.01, na.rm = TRUE),
+            p25 = quantile(`Index Value`, 0.25, na.rm = TRUE),
+            p50 = quantile(`Index Value`, 0.5, na.rm = TRUE),
+            p75 = quantile(`Index Value`, 0.75, na.rm = TRUE),
+            p99 = quantile(`Index Value`, 0.99, na.rm = TRUE),
+            avg = mean(`Index Value`, na.rm = TRUE))
+
+colnames(all_pctiles_prices) <- c("Date", "1st Percentile", "25th Percentile", "Median", "75th Percentile", "99th Percentile", "Average")
+all_pctiles_prices <- all_pctiles_prices %>%
+  pivot_longer(cols = -"Date", names_to = "measure", values_to = "Value")
+all_pctiles_prices$Value <- 100*all_pctiles_prices$Value
+all_pctiles_prices <- all_pctiles_prices[,c(2,1,3)]
+all_pctiles_prices$Date <- substr(all_pctiles_prices$Date, 1, 7)
+
+write_csv(all_pctiles_prices, "pctile_prices.csv")
 
 

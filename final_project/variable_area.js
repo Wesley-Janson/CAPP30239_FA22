@@ -6,27 +6,27 @@ Figure 1 - Variable Area Graph
 d3 = require("d3@6")
 //import {swatches} from "@d3/color-legend"
 
-chart = {
-    data = d3.csv(clean_ts_data.csv).then( data => {
-    
-        let timeParse = d3.timeParse("%Y-%m");
-        height = 500
-        margin = ({top: 0, right: 20, bottom: 30, left: 20})
+d3.csv("covid_prices.csv").then( data => {
 
-        for (let d of data) {
-            d.Date = timeParse(d.Date);
-          }
+    let timeParse = d3.timeParse("%Y-%m");
+    height = 500
+    margin = ({top: 0, right: 20, bottom: 30, left: 20})
 
-    const svg = d3.create("svg")
+    for (let d of data) {
+        d.date = timeParse(d.date);
+        }
+
+    const svg = d3.select("#variable-area")
+        .append("svg")
         .attr("viewBox", [0, 0, width, height]);
 
     svg.append("g")
-        .selectAll("line"),
-        .data(chapters
+        .selectAll("line")
+        .data(date)
         .join("line")
-            .attr("x1", d => x(d.chapter))
+            .attr("x1", d => x(d.date))
             .attr("y1", 0)
-            .attr("x2", d => x(d.chapter))
+            .attr("x2", d => x(d.date))
             .attr("y2", height - margin.top - margin.bottom)
             .style("stroke-width", 1)
             .style("stroke", "#333")
@@ -44,78 +44,73 @@ chart = {
 
     svg.append("g")
         .selectAll("text")
-        .data(chapters)
+        .data(date)
         .join("text")
             .attr("text-anchor", "middle")
-            .attr("x", d => x(d.chapter))
+            .attr("x", d => x(d.date))
             .attr("y", d => y(d.maxY))
             .attr("y", 30)
-            .text(d => d.chapter);
+            .text(d => d.date);
 
     svg.append("g")
         .call(xAxis);
 
     return svg.node();
-    }
-)}
+})
 
-chapters = {
+let arr = [];
+for(let i = 0; i < series[0].length; i++) {
+    let minY = Infinity;
+    let maxY = -Infinity;
+
+    for(let s of series) {
+        if(s[i][0] < minY) {
+            minY = s[i][0];
+        }
+        if(s[i][1] > maxY) {
+            maxY = s[i][1];
+        }
+    }
+
+    arr.push({
+        chapter: data[i].chapter,
+        minY,
+        maxY
+    });
+}
+return arr; 
+
+for (let i = 0; i < series[0].length; i++) {
+    
+    let start = Infinity;
     let arr = [];
 
-    for(let i = 0; i < series[0].length; i++) {
-        let minY = Infinity;
-        let maxY = -Infinity;
-    
-        for(let s of series) {
-            if(s[i][0] < minY) {
-                minY = s[i][0];
-            }
-            if(s[i][1] > maxY) {
-                maxY = s[i][1];
-            }
-        }
-    
+    for (let j = 0; j < series.length; j++) {
+        let d = series[j];
+
         arr.push({
-            chapter: data[i].chapter,
-            minY,
-            maxY
+        j,amount: d[i][1] - d[i][0]
         });
+
+        if (d[i][0] < start) {
+        start = d[i][0];
+        }
     }
 
-    return arr; 
-}
+    arr.sort((a, b) => a.amount - b.amount);
 
-zzz = {
-    for (let i = 0; i < series[0].length; i++) {
-      
-        let start = Infinity;
-        let arr = [];
+    for (let obj of arr) {
+        series[obj.j][i][0] = start;
+        series[obj.j][i][1] = start + obj.amount;
 
-        for (let j = 0; j < series.length; j++) {
-            let d = series[j];
-
-            arr.push({
-            j,amount: d[i][1] - d[i][0]
-            });
-
-            if (d[i][0] < start) {
-            start = d[i][0];
-            }
-        }
-
-        arr.sort((a, b) => a.amount - b.amount);
-
-        for (let obj of arr) {
-            series[obj.j][i][0] = start;
-            series[obj.j][i][1] = start + obj.amount;
-
-            start += obj.amount;
-        }
-  }
+        start += obj.amount;
+    }
 }
 
 series = d3.stack()
-    .keys(["sadness","joy","surprise","disgust", "trust", "fear", "anger", "anticipation"])
+    .keys(["Rented Housing", "Owned Housing", "Health Insurance (Net)", "Purchased Meals", 
+    "Goodwill Medical Services", "Physician Services", "New Light Trucks", "Goodwill Services",
+    "Prescription Drugs", "Gasoline/Fuel"])
     .offset(d3.stackOffsetWiggle)
     .order(d3.stackOrderInsideOut)
   (data)
@@ -123,7 +118,7 @@ series = d3.stack()
 area = d3.area()
     .curve(d3.curveBasis)
     // .curve(d3.curveLinear)
-    .x(d => x(d.data.chapter))
+    .x(d => x(d.data.date))
     .y0(d => y(d[0]))
     .y1(d => y(d[1]))
 
@@ -131,7 +126,7 @@ area = d3.area()
     //.domain(d3.extent(data, d => d.date))
     //.range([margin.left, width - margin.right])
 x = d3.scaleTime()
-    .domain(d3.extent(data, d => d.Date))
+    .domain(d3.extent(data, d => d.date))
     .range([margin.left, width - margin.right]);
 
 y = d3.scaleLinear()
@@ -139,14 +134,16 @@ y = d3.scaleLinear()
     .range([height - margin.bottom, margin.top])
 
 colorMap = ({
-        "trust": "#abdda4",
-        "joy": "#fee08b",
-        "anticipation": "#fdae61",
-        "sadness": "#3288bd",
-        "disgust": "#DB95D2",
-        "surprise": "#66AADD",
-        "fear": "#66c2a5",
-        "anger": "#d53e4f"
+        "Rented Housing": "#abdda4",
+        "Owned Housing": "#fee08b",
+        "Health Insurance (Net)": "#fdae61",
+        "Purchased Meals": "#3288bd",
+        "Goodwill Medical Services": "#DB95D2",
+        "Physician Services": "#66AADD",
+        "New Light Trucks": "#66c2a5",
+        "Goodwill Services": "#d53e4f",
+        "Prescription Drugs": "#d53e3d",
+        "Gasoline/Fuel":"#DB97H1"
 })
 
 color = d3.scaleOrdinal()
