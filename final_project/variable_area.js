@@ -58,27 +58,27 @@ d3.csv("covid_prices.csv").then( data => {
     return svg.node();
 })
 
-let arr = [];
-for(let i = 0; i < series[0].length; i++) {
-    let minY = Infinity;
-    let maxY = -Infinity;
+// let arr = [];
+// for(let i = 0; i < series[0].length; i++) {
+//     let minY = Infinity;
+//     let maxY = -Infinity;
 
-    for(let s of series) {
-        if(s[i][0] < minY) {
-            minY = s[i][0];
-        }
-        if(s[i][1] > maxY) {
-            maxY = s[i][1];
-        }
-    }
+//     for(let s of series) {
+//         if(s[i][0] < minY) {
+//             minY = s[i][0];
+//         }
+//         if(s[i][1] > maxY) {
+//             maxY = s[i][1];
+//         }
+//     }
 
-    arr.push({
-        chapter: data[i].chapter,
-        minY,
-        maxY
-    });
-}
-return arr; 
+//     arr.push({
+//         chapter: data[i].chapter,
+//         minY,
+//         maxY
+//     });
+// }
+// return arr;
 
 for (let i = 0; i < series[0].length; i++) {
     

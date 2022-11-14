@@ -250,3 +250,44 @@ all_pctiles_prices$Date <- substr(all_pctiles_prices$Date, 1, 7)
 write_csv(all_pctiles_prices, "pctile_prices.csv")
 
 
+##### Most volatile Goods and Services
+high_vars <- covid_month[,-1] %>% 
+  summarise_all(funs(var))
+high_vars10 <- high_vars[which(high_vars %in% sort(as.data.frame(t(high_vars))$V1, 
+                                                         decreasing = TRUE)[1:10])]
+
+high_var_price <- covid_prices %>%
+  select(Date, colnames(high_vars10)) %>%
+  filter(Date>"2020-01-01")
+high_var_price <- as.data.frame(cbind(high_var_price[,1],apply(high_var_price[,-1], 2, function(y) 100 * y / y[1])))
+
+
+test <- high_var_price[,1:2]
+
+overlap_data <- data_frame()
+for (i in 5:length(high_var_price)) {
+  test <- high_var_price[,c(1,i)]
+  
+  test <- test[test[,2] %in% c(100,max(high_var_price[,i]), 
+                                                           high_var_price[nrow(high_var_price),i]),]
+  test$type <- c(c("Base", "Max", "Current"))
+  test <- test[,-1]
+  test_wide <- test %>%
+    pivot_wider(names_from = type, values_from = colnames(test)[1])
+  
+  overlap_data <- rbind(overlap_data, test_wide)
+  
+}
+
+
+
+# overlap_test <- overlap_data[1,]
+# overlap_test$Component <- colnames(high_var_price)[2]
+# write_csv(overlap_test, "overlap_test.csv")
+# overlap_test$Base <- overlap_test$Base*0.01
+# overlap_test$Max <- (overlap_test$Max-100)*0.01
+# overlap_test$`Last Reading` <- (overlap_test$`Current`-100)*0.01
+
+  
+  
+
