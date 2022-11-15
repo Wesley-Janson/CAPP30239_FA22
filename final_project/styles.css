@@ -1,0 +1,16 @@
+svg {
+    max-width: 600px;
+}
+
+#multiline > svg {
+    max-width: 800px;
+}
+
+#overlap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+#overlap > svg {
+    width: 33%;
+}
