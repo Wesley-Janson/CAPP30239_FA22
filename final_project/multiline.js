@@ -1,10 +1,10 @@
 /* Wesley Janson
 CAPP 30239 Final Project
-Figure 3 - Multiline Graph
+Figure 1 - Multiline Graph
 */
 
-let height = 250,
-    width = 450,
+let height = 215,
+    width = 350,
     margin = ({ top: 25, right: 30, bottom: 35, left: 30 })
     innerWidth = width - margin.left - margin.right;
 
@@ -48,7 +48,7 @@ d3.csv("pctile_prices.csv").then(data => {
     let pctileData = data.filter(d => d.measure === pctile);
 
     let g = svg.append("g")
-      .attr("class", "country")
+      .attr("class", "pctile")
       .on('mouseover', function () {
         d3.selectAll(".highlight").classed("highlight", false);
         d3.select(this).classed("highlight", true);

@@ -2,15 +2,36 @@ svg {
     max-width: 600px;
 }
 
-#multiline > svg {
-    max-width: 800px;
+#multiline>svg {
+    max-width: 450px;
 }
 
 #overlap {
     display: flex;
     flex-wrap: wrap;
-  }
+}
 
-#overlap > svg {
+#overlap>svg {
     width: 33%;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+    column-gap: 40px;
+    margin: 50px 0px;
+}
+
+.flex-container svg {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    width: 25%;
 }

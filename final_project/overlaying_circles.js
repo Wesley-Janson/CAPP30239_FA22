@@ -1,6 +1,6 @@
 /* Wesley Janson
 CAPP 30239 Final Project
-Figure 2 - Overlaying Circles Graph
+Figure 3 - Overlaying Circles Graph
 */
 
 d3.csv("overlap_circles.csv").then(data => {
@@ -8,6 +8,7 @@ d3.csv("overlap_circles.csv").then(data => {
         createCircle(d);   // Loop through CSV, run function to create circles for each data point (Component)
     }
 });
+
 
 function createCircle({ Base, Max, Current, Component }) {
     Base = +Base;
@@ -55,9 +56,10 @@ function createCircle({ Base, Max, Current, Component }) {
     circle_svg
         .append("text")
         .attr("font-size", 1)
-        .attr("x", 2)
+        .attr("x", width/2)
         .attr("y", 5)
-        .attr("alignment-baseline", "middle")
+        //.attr("alignment-baseline", "middle")
+        .attr("text-anchor", "middle")
         .text(Component)
         .style("font-size", 1);
 
