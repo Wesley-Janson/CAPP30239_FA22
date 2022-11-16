@@ -3,8 +3,8 @@ CAPP 30239 Final Project
 Figure 1 - Multiline Graph
 */
 
-let height = 215,
-    width = 350,
+let height = 350,
+    width = 600,
     margin = ({ top: 25, right: 30, bottom: 35, left: 30 })
     innerWidth = width - margin.left - margin.right;
 
@@ -68,7 +68,7 @@ d3.csv("pctile_prices.csv").then(data => {
 
     g.append("text")
       .text(pctile)
-      .attr("x", x(lastEntry.Date) + 3)
+      .attr("x", x(lastEntry.Date) + 1)
       .attr("y", y(lastEntry.Value))
       .attr("dominant-baseline", "middle")
       .attr("fill", "#999");

@@ -55,9 +55,8 @@ function createCircle({ Base, Max, Current, Component }) {
 
     circle_svg
         .append("text")
-        .attr("font-size", 1)
         .attr("x", width/2)
-        .attr("y", 5)
+        .attr("y", 5.25)
         //.attr("alignment-baseline", "middle")
         .attr("text-anchor", "middle")
         .text(Component)

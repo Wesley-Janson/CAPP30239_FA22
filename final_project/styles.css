@@ -3,7 +3,8 @@ svg {
 }
 
 #multiline>svg {
-    max-width: 450px;
+    max-width: 650px;
+    max-height: 450px;
 }
 
 #overlap {
@@ -18,12 +19,12 @@ svg {
 .flex-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: normal;
     align-items: normal;
     align-content: normal;
-    column-gap: 40px;
-    margin: 50px 0px;
+    column-gap: 0px;
+    margin: 0px 0px;
 }
 
 .flex-container svg {
@@ -33,5 +34,5 @@ svg {
     flex-basis: auto;
     align-self: auto;
     order: 0;
-    width: 25%;
+    width: 20%;
 }
