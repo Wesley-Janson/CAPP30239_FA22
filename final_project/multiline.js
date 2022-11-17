@@ -5,7 +5,7 @@ Figure 1 - Multiline Graph
 
 let height = 350,
     width = 600,
-    margin = ({ top: 25, right: 30, bottom: 35, left: 30 })
+    margin = ({ top: 25, right: 45, bottom: 35, left: 30 })
     innerWidth = width - margin.left - margin.right;
 
 const svg = d3.select("#multiline")

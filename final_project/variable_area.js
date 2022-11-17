@@ -3,17 +3,27 @@ CAPP 30239 Final Project
 Figure 2 - Variable Area Graph
 */
 
-d3 = require("d3@6")
+//d3 = require("d3@6")
 //import {swatches} from "@d3/color-legend"
 
 d3.csv("covid_prices.csv").then( data => {
 
     let timeParse = d3.timeParse("%Y-%m");
     height = 500
-    margin = ({top: 0, right: 20, bottom: 30, left: 20})
+    margin = ({top: 10, right: 20, bottom: 30, left: 20})
 
     for (let d of data) {
         d.date = timeParse(d.date);
+        d["Rented Housing"] = +d["Rented Housing"]
+        d["Owned Housing"] = +d["Owned Housing"]
+        d["Health Insurance (Net)"] = +d["Health Insurance (Net)"]
+        d["Purchased Meals"] = +d["Purchased Meals"]
+        d["Goodwill Medical Services"] = +d["Goodwill Medical Services"]
+        d["Physician Services"] = +d["Physician Services"]
+        d["Goodwill Services"] = +d["Goodwill Services"]
+        d["Prescription Drugs"] = +d["Prescription Drugs"]
+        d["New Light Trucks"] = +d["New Light Trucks"]
+        d["Gasoline/Fuel"] = +d["Gasoline/Fuel"]
         }
 
     const svg = d3.select("#variable-area")
@@ -22,7 +32,7 @@ d3.csv("covid_prices.csv").then( data => {
 
     svg.append("g")
         .selectAll("line")
-        .data(date)
+        .data(dates(data))
         .join("line")
             .attr("x1", d => x(d.date))
             .attr("y1", 0)
@@ -44,7 +54,7 @@ d3.csv("covid_prices.csv").then( data => {
 
     svg.append("g")
         .selectAll("text")
-        .data(date)
+        .data(dates(data))
         .join("text")
             .attr("text-anchor", "middle")
             .attr("x", d => x(d.date))
@@ -58,52 +68,61 @@ d3.csv("covid_prices.csv").then( data => {
     return svg.node();
 })
 
-// let arr = [];
-// for(let i = 0; i < series[0].length; i++) {
-//     let minY = Infinity;
-//     let maxY = -Infinity;
 
-//     for(let s of series) {
-//         if(s[i][0] < minY) {
-//             minY = s[i][0];
-//         }
-//         if(s[i][1] > maxY) {
-//             maxY = s[i][1];
-//         }
-//     }
+/* Create functions to be called above */
 
-//     arr.push({
-//         chapter: data[i].chapter,
-//         minY,
-//         maxY
-//     });
-// }
-// return arr;
-
-for (let i = 0; i < series[0].length; i++) {
-    
-    let start = Infinity;
+// Function to create dates?
+function dates({ data }) {
     let arr = [];
+    for(let i = 0; i < series[0].length; i++) {
+        let minY = Infinity;
+        let maxY = -Infinity;
 
-    for (let j = 0; j < series.length; j++) {
-        let d = series[j];
+        for(let s of series) {
+            if(s[i][0] < minY) {
+                minY = s[i][0];
+            }
+            if(s[i][1] > maxY) {
+                maxY = s[i][1];
+            }
+        }
 
         arr.push({
-        j,amount: d[i][1] - d[i][0]
+            date: data[i].date,
+            minY,
+            maxY
         });
-
-        if (d[i][0] < start) {
-        start = d[i][0];
-        }
     }
+    return arr;
+}
 
-    arr.sort((a, b) => a.amount - b.amount);
+// What does this do?
+function fct({ data }) {
+    for (let i = 0; i < series[0].length; i++) {
+        
+        let start = Infinity;
+        let arr = [];
 
-    for (let obj of arr) {
-        series[obj.j][i][0] = start;
-        series[obj.j][i][1] = start + obj.amount;
+        for (let j = 0; j < series.length; j++) {
+            let d = series[j];
 
-        start += obj.amount;
+            arr.push({
+            j,amount: d[i][1] - d[i][0]
+            });
+
+            if (d[i][0] < start) {
+            start = d[i][0];
+            }
+        }
+
+        arr.sort((a, b) => a.amount - b.amount);
+
+        for (let obj of arr) {
+            series[obj.j][i][0] = start;
+            series[obj.j][i][1] = start + obj.amount;
+
+            start += obj.amount;
+        }
     }
 }
 
@@ -122,9 +141,6 @@ area = d3.area()
     .y0(d => y(d[0]))
     .y1(d => y(d[1]))
 
-//x = d3.scaleLinear()
-    //.domain(d3.extent(data, d => d.date))
-    //.range([margin.left, width - margin.right])
 x = d3.scaleTime()
     .domain(d3.extent(data, d => d.date))
     .range([margin.left, width - margin.right]);
