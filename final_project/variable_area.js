@@ -51,7 +51,7 @@ d3.csv("covid_prices.csv").then( data => {
     var stacked = series(data);
 
     y = d3.scaleLinear()
-        .domain([d3.min(stacked, d => d3.max(d, d => d[1])), d3.max(stacked, d => d3.max(d, d => d[1]))])
+        .domain([d3.max(stacked, d => d3.max(d, d => d[1]))*(-1), d3.max(stacked, d => d3.max(d, d => d[1]))])
         .range([height - margin.bottom, margin.top])
 
     svg.append("g")
@@ -60,7 +60,6 @@ d3.csv("covid_prices.csv").then( data => {
 
     area = d3.area()
         .curve(d3.curveBasis)
-        // .curve(d3.curveLinear)
         .x(d => x(d.data.date))
         .y0(d => y(d[0]))
         .y1(d => y(d[1]))
@@ -76,6 +75,12 @@ d3.csv("covid_prices.csv").then( data => {
         .append("title")
             .text(({key}) => key);
 
+    console.log(stacked[0]);
+    //clean_data = fct(stacked);
+
+    test = dates(stacked, data);
+    console.log(test);
+
     // svg.append("g")
     //     .selectAll("text")
     //     .data(dates(data))
@@ -87,67 +92,70 @@ d3.csv("covid_prices.csv").then( data => {
     //         .text(d => d.date);
 
 
-    // return svg.node();
+    return svg.node();
 })
 
 
 /* Create functions to be called above */
 
 // Function to create dates?
-// function dates({ data }) {
-//     let arr = [];
-//     for(let i = 0; i < series(data)[0].length; i++) {
-//         let minY = Infinity;
-//         let maxY = -Infinity;
-
-//         for(let s of series(data)) {
-//             if(s[i][0] < minY) {
-//                 minY = s[i][0];
-//             }
-//             if(s[i][1] > maxY) {
-//                 maxY = s[i][1];
-//             }
-//         }
-
-//         arr.push({
-//             date: data[i].date,
-//             minY,
-//             maxY
-//         });
-//     }
-//     return arr;
-// }
+function dates({ series, data }) {
+    let arr = [];
+  
+    for(let i = 0; i < series[1].length; i++) {
+      let minY = Infinity;
+      let maxY = -Infinity;
+      
+      for(let s of series) {
+        if(s[i][0] < minY) {
+          minY = s[i][0];
+        }
+        if(s[i][1] > maxY) {
+          maxY = s[i][1];
+        }
+      }
+      
+      arr.push({
+        date: data[i].date,
+        minY,
+        maxY
+      });
+    }
+    
+    return arr; 
+  }
 
 // // What does this do?
-// function fct({ data }) {
-//     for (let i = 0; i < series[0].length; i++) {
-        
-//         let start = Infinity;
-//         let arr = [];
-
-//         for (let j = 0; j < series.length; j++) {
-//             let d = series[j];
-
-//             arr.push({
-//             j,amount: d[i][1] - d[i][0]
-//             });
-
-//             if (d[i][0] < start) {
-//             start = d[i][0];
-//             }
-//         }
-
-//         arr.sort((a, b) => a.amount - b.amount);
-
-//         for (let obj of arr) {
-//             series[obj.j][i][0] = start;
-//             series[obj.j][i][1] = start + obj.amount;
-
-//             start += obj.amount;
-//         }
-//     }
-// }
-
+function fct({ series }) {
+    for (let i = 0; i < series[0].length; i++) {
+      
+        let start = Infinity;
+        let arr = [];
+    
+        for (let j = 0; j < series.length; j++) {
+          let d = series[j];
+    
+          arr.push({
+            j,
+            amount: d[i][1] - d[i][0]
+          });
+    
+          if (d[i][0] < start) {
+            start = d[i][0];
+          }
+        }
+    
+        arr.sort((a, b) => a.amount - b.amount);
+    
+        for (let obj of arr) {
+          series[obj.j][i][0] = start;
+          series[obj.j][i][1] = start + obj.amount;
+    
+          start += obj.amount;
+        }
+      
+    }
+}
 colorMap = ({
         "Rented Housing": "#1f77b4",
         "Owned Housing": "#ff7f0e",
