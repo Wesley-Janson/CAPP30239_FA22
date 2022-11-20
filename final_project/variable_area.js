@@ -66,6 +66,7 @@ d3.csv("covid_prices.csv").then( data => {
         .order(d3.stackOrderInsideOut)
 
     stacked = series(data);
+    console.log(stacked.keys);
 
     let y = d3.scaleLinear()
         .domain([d3.max(stacked, d => d3.max(d, d => d[1]))*(-1), d3.max(stacked, d => d3.max(d, d => d[1]))])
@@ -84,7 +85,7 @@ d3.csv("covid_prices.csv").then( data => {
 
     svg.append("g")
         .selectAll("path")
-        .data(stacked)
+        .data(fct2(stacked))
         .join("path")
             .attr("fill", ({key}) => color(key))
             .attr("opacity", 0.8)
@@ -94,46 +95,43 @@ d3.csv("covid_prices.csv").then( data => {
 
     // svg.append("g")
     //     .selectAll("text")
-    //     .data(fct1(stacked, data))
+    //     .data(stacked)
     //     .join("text")
-    //         .attr("text-anchor", "middle")
-    //         .attr("x", d => x(d.date))
-    //         .attr("y", d => y(d.maxY))
-    //         .attr("y", 30)
-    //         .text(d => d.date);
+    //         //.attr("text-anchor", "middle")
+    //         .attr("x", 25.5)
+    //         .attr("y", 35)
+    //         .text(({key}) => key);
 
-
-/* Create functions to be called above */
 
 // Function to create dates?
-    function fct1( series, data ) {
-        let arr = [];
+    // function fct1( series, data ) {
+    //     let arr = [];
     
-        for(let i = 0; i < series[0].length; i++) {
-        let minY = Infinity;
-        let maxY = -Infinity;
+    //     for(let i = 0; i < series[0].length; i++) {
+    //     let minY = Infinity;
+    //     let maxY = -Infinity;
         
-        for(let s of series) {
-            if(s[i][0] < minY) {
-            minY = s[i][0];
-            }
-            if(s[i][1] > maxY) {
-            maxY = s[i][1];
-            }
-        }
+    //     for(let s of series) {
+    //         if(s[i][0] < minY) {
+    //         minY = s[i][0];
+    //         }
+    //         if(s[i][1] > maxY) {
+    //         maxY = s[i][1];
+    //         }
+    //     }
         
-        arr.push({
-            date: data[i].date,
-            minY,
-            maxY
-        });
-        }
+    //     arr.push({
+    //         date: data[i].date,
+    //         minY,
+    //         maxY
+    //     });
+    //     }
         
-        return arr; 
-    }
+    //     return arr; 
+    // }
 
 
-// // What does this do?
+// Rank series each period
     function fct2( series ) {
         for (let i = 0; i < series[0].length; i++) {
         
@@ -142,10 +140,8 @@ d3.csv("covid_prices.csv").then( data => {
         
             for (let j = 0; j < series.length; j++) {
                 let d = series[j];
-                console.log(d);
                 arr.push({
-                    j,
-                    amount: d[i][1] - d[i][0]
+                    j,amount: d[i][1] - d[i][0]
                 });
         
                 if (d[i][0] < start) {
@@ -154,7 +150,7 @@ d3.csv("covid_prices.csv").then( data => {
             }
         
             arr.sort((a, b) => a.amount - b.amount);
-        
+            
             for (let obj of arr) {
                 series[obj.j][i][0] = start;
                 series[obj.j][i][1] = start + obj.amount;
@@ -163,7 +159,7 @@ d3.csv("covid_prices.csv").then( data => {
             }
         
         }
+        return series;
     }
-    //console.log(fct2(stacked));
 
 })
