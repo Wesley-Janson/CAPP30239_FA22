@@ -8,6 +8,23 @@ Figure 2 - Variable Area Graph
 
 d3.csv("covid_prices.csv").then( data => {
 
+    let colorMap = ({
+        "Rented Housing": "#1f77b4",
+        "Owned Housing": "#ff7f0e",
+        "Health Insurance (Net)": "#2ca02c",
+        "Purchased Meals": "#d62728",
+        "Goodwill Medical Services": "#9467bd",
+        "Physician Services": "#8c564b",
+        "New Light Trucks": "#e377c2",
+        "Goodwill Services": "#7f7f7f",
+        "Prescription Drugs": "#bcbd22",
+        "Gasoline/Fuel":"#17becf"
+    })
+
+    let color = d3.scaleOrdinal()
+        .domain(Object.keys(colorMap))
+        .range(Object.values(colorMap))
+
     let timeParse = d3.timeParse("%Y-%m"),
     height = 400,
     width = 650,
@@ -15,23 +32,23 @@ d3.csv("covid_prices.csv").then( data => {
 
     for (let d of data) {
         d.date = timeParse(d.date);
-        d["Rented Housing"] = +d["Rented Housing"]
-        d["Owned Housing"] = +d["Owned Housing"]
-        d["Health Insurance (Net)"] = +d["Health Insurance (Net)"]
-        d["Purchased Meals"] = +d["Purchased Meals"]
-        d["Goodwill Medical Services"] = +d["Goodwill Medical Services"]
-        d["Physician Services"] = +d["Physician Services"]
-        d["Goodwill Services"] = +d["Goodwill Services"]
-        d["Prescription Drugs"] = +d["Prescription Drugs"]
-        d["New Light Trucks"] = +d["New Light Trucks"]
-        d["Gasoline/Fuel"] = +d["Gasoline/Fuel"]
+        d["Rented Housing"] = +d["Rented Housing"];
+        d["Owned Housing"] = +d["Owned Housing"];
+        d["Health Insurance (Net)"] = +d["Health Insurance (Net)"];
+        d["Purchased Meals"] = +d["Purchased Meals"];
+        d["Goodwill Medical Services"] = +d["Goodwill Medical Services"];
+        d["Physician Services"] = +d["Physician Services"];
+        d["Goodwill Services"] = +d["Goodwill Services"];
+        d["Prescription Drugs"] = +d["Prescription Drugs"];
+        d["New Light Trucks"] = +d["New Light Trucks"];
+        d["Gasoline/Fuel"] = +d["Gasoline/Fuel"];
         }
 
     const svg = d3.select("#variable-area")
         .append("svg")
         .attr("viewBox", [0, 0, width, height]);
 
-    x = d3.scaleTime()
+    let x = d3.scaleTime()
         .domain(d3.extent(data, d => d.date))
         .range([margin.left, width - margin.right]);
 
@@ -48,17 +65,17 @@ d3.csv("covid_prices.csv").then( data => {
         .offset(d3.stackOffsetWiggle)
         .order(d3.stackOrderInsideOut)
 
-    var stacked = series(data);
+    stacked = series(data);
 
-    y = d3.scaleLinear()
+    let y = d3.scaleLinear()
         .domain([d3.max(stacked, d => d3.max(d, d => d[1]))*(-1), d3.max(stacked, d => d3.max(d, d => d[1]))])
         .range([height - margin.bottom, margin.top])
 
-    svg.append("g")
-        .attr("transform", `translate(${margin.left},0)`)
-        .call(d3.axisLeft(y).tickSize(-innerWidth).tickFormat(d => d));
+    // svg.append("g")
+    //     .attr("transform", `translate(${margin.left},0)`)
+    //     .call(d3.axisLeft(y).tickSize(-innerWidth).tickFormat(d => d));
 
-    area = d3.area()
+    let area = d3.area()
         .curve(d3.curveBasis)
         .x(d => x(d.data.date))
         .y0(d => y(d[0]))
@@ -67,23 +84,17 @@ d3.csv("covid_prices.csv").then( data => {
 
     svg.append("g")
         .selectAll("path")
-        .data(series(data))
+        .data(stacked)
         .join("path")
             .attr("fill", ({key}) => color(key))
-            .attr("opacity", 0.9)
+            .attr("opacity", 0.8)
             .attr("d", area)
         .append("title")
             .text(({key}) => key);
 
-    console.log(stacked[0]);
-    //clean_data = fct(stacked);
-
-    test = dates(stacked, data);
-    console.log(test);
-
     // svg.append("g")
     //     .selectAll("text")
-    //     .data(dates(data))
+    //     .data(fct1(stacked, data))
     //     .join("text")
     //         .attr("text-anchor", "middle")
     //         .attr("x", d => x(d.date))
@@ -92,83 +103,67 @@ d3.csv("covid_prices.csv").then( data => {
     //         .text(d => d.date);
 
 
-    return svg.node();
-})
-
-
 /* Create functions to be called above */
 
 // Function to create dates?
-function dates({ series, data }) {
-    let arr = [];
-  
-    for(let i = 0; i < series[1].length; i++) {
-      let minY = Infinity;
-      let maxY = -Infinity;
-      
-      for(let s of series) {
-        if(s[i][0] < minY) {
-          minY = s[i][0];
-        }
-        if(s[i][1] > maxY) {
-          maxY = s[i][1];
-        }
-      }
-      
-      arr.push({
-        date: data[i].date,
-        minY,
-        maxY
-      });
-    }
-    
-    return arr; 
-  }
-
-// // What does this do?
-function fct({ series }) {
-    for (let i = 0; i < series[0].length; i++) {
-      
-        let start = Infinity;
+    function fct1( series, data ) {
         let arr = [];
     
-        for (let j = 0; j < series.length; j++) {
-          let d = series[j];
-    
-          arr.push({
-            j,
-            amount: d[i][1] - d[i][0]
-          });
-    
-          if (d[i][0] < start) {
-            start = d[i][0];
-          }
+        for(let i = 0; i < series[0].length; i++) {
+        let minY = Infinity;
+        let maxY = -Infinity;
+        
+        for(let s of series) {
+            if(s[i][0] < minY) {
+            minY = s[i][0];
+            }
+            if(s[i][1] > maxY) {
+            maxY = s[i][1];
+            }
         }
-    
-        arr.sort((a, b) => a.amount - b.amount);
-    
-        for (let obj of arr) {
-          series[obj.j][i][0] = start;
-          series[obj.j][i][1] = start + obj.amount;
-    
-          start += obj.amount;
+        
+        arr.push({
+            date: data[i].date,
+            minY,
+            maxY
+        });
         }
-      
+        
+        return arr; 
     }
-}
-colorMap = ({
-        "Rented Housing": "#1f77b4",
-        "Owned Housing": "#ff7f0e",
-        "Health Insurance (Net)": "#2ca02c",
-        "Purchased Meals": "#d62728",
-        "Goodwill Medical Services": "#9467bd",
-        "Physician Services": "#8c564b",
-        "New Light Trucks": "#e377c2",
-        "Goodwill Services": "#7f7f7f",
-        "Prescription Drugs": "#bcbd22",
-        "Gasoline/Fuel":"#17becf"
-})
 
-color = d3.scaleOrdinal()
-    .domain(Object.keys(colorMap))
-    .range(Object.values(colorMap))
+
+// // What does this do?
+    function fct2( series ) {
+        for (let i = 0; i < series[0].length; i++) {
+        
+            let start = Infinity;
+            let arr = [];
+        
+            for (let j = 0; j < series.length; j++) {
+                let d = series[j];
+                console.log(d);
+                arr.push({
+                    j,
+                    amount: d[i][1] - d[i][0]
+                });
+        
+                if (d[i][0] < start) {
+                    start = d[i][0];
+                }
+            }
+        
+            arr.sort((a, b) => a.amount - b.amount);
+        
+            for (let obj of arr) {
+                series[obj.j][i][0] = start;
+                series[obj.j][i][1] = start + obj.amount;
+        
+                start += obj.amount;
+            }
+        
+        }
+    }
+    //console.log(fct2(stacked));
+
+})
