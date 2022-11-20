@@ -57,7 +57,6 @@ function createCircle({ Base, Max, Current, Component }) {
         .append("text")
         .attr("x", width/2)
         .attr("y", 5.25)
-        //.attr("alignment-baseline", "middle")
         .attr("text-anchor", "middle")
         .text(Component)
         .style("font-size", 1);

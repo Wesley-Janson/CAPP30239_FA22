@@ -72,10 +72,6 @@ d3.csv("covid_prices.csv").then( data => {
         .domain([d3.max(stacked, d => d3.max(d, d => d[1]))*(-1), d3.max(stacked, d => d3.max(d, d => d[1]))])
         .range([height - margin.bottom, margin.top])
 
-    // svg.append("g")
-    //     .attr("transform", `translate(${margin.left},0)`)
-    //     .call(d3.axisLeft(y).tickSize(-innerWidth).tickFormat(d => d));
-
     let area = d3.area()
         .curve(d3.curveBasis)
         .x(d => x(d.data.date))
@@ -85,13 +81,33 @@ d3.csv("covid_prices.csv").then( data => {
 
     svg.append("g")
         .selectAll("path")
-        .data(fct2(stacked))
+        .data(rank(stacked))
         .join("path")
             .attr("fill", ({key}) => color(key))
             .attr("opacity", 0.8)
             .attr("d", area)
         .append("title")
             .text(({key}) => key);
+
+    // let legendGroup = svg
+    //     .selectAll(".legend-group")
+    //     .data(stacked)
+    //     .join("g")
+    //     .attr("class", "legend-group");
+    
+    // legendGroup
+    //     .append("circle")
+    //     .attr("cx", (d, i) => (10 + (i * 65)))
+    //     .attr("cy",10)
+    //     .attr("r", 3)
+    //     .attr("fill", (d, i) => color(i));
+    
+    // legendGroup
+    //     .append("text")
+    //     .attr("x", (d, i) => (15 + (i * 65)))
+    //     .attr("y",12.5)
+    //     .text(({key}) => key)
+    //     .style("font-size", 10);
 
     // svg.append("g")
     //     .selectAll("text")
@@ -132,7 +148,7 @@ d3.csv("covid_prices.csv").then( data => {
 
 
 // Rank series each period
-    function fct2( series ) {
+    function rank( series ) {
         for (let i = 0; i < series[0].length; i++) {
         
             let start = Infinity;
