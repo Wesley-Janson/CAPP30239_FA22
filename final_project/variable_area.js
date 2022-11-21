@@ -99,7 +99,6 @@ d3.csv("covid_prices.csv").then( data => {
         .append("circle")
         .attr("cx", (d, i) => (i < 5) ? (12.5 + (i * 135)) : (12.5 + ((i-5) * 135)))
         .attr("cy",  (d, i) => (i < 5) ? 12.3 : 32.3)
-        //.attr("y",)
         .attr("r", 3)
         .attr("fill", (d, i) => color(i));
     
