@@ -1,6 +1,6 @@
 /* Wesley Janson
 CAPP 30239 Final Project
-Figure 2 - Variable Area Graph
+Figure 3 - Variable Area Graph
 */
 
 //d3 = require("d3@6")
