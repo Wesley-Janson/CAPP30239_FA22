@@ -26,9 +26,9 @@ d3.csv("covid_prices.csv").then( data => {
         .range(Object.values(colorMap))
 
     let timeParse = d3.timeParse("%Y-%m"),
-    height = 400,
-    width = 650,
-    margin = ({top: 10, right: 20, bottom: 30, left: 20});
+    height = 450,
+    width = 700,
+    margin = ({top: 10, right: 5, bottom: 10, left: 5});
 
     for (let d of data) {
         d.date = timeParse(d.date);
@@ -69,7 +69,7 @@ d3.csv("covid_prices.csv").then( data => {
     console.log(stacked.keys);
 
     let y = d3.scaleLinear()
-        .domain([d3.max(stacked, d => d3.max(d, d => d[1]))*(-1), d3.max(stacked, d => d3.max(d, d => d[1]))])
+        .domain([d3.max(stacked, d => d3.max(d, d => d[1]))*(-1), d3.max(stacked, d => d3.max(d, d => d[1]))+120])
         .range([height - margin.bottom, margin.top])
 
     let area = d3.area()
@@ -89,62 +89,26 @@ d3.csv("covid_prices.csv").then( data => {
         .append("title")
             .text(({key}) => key);
 
-    // let legendGroup = svg
-    //     .selectAll(".legend-group")
-    //     .data(stacked)
-    //     .join("g")
-    //     .attr("class", "legend-group");
+    let legendGroup = svg
+        .selectAll(".legend-group")
+        .data(stacked)
+        .join("g")
+        .attr("class", "legend-group");
     
-    // legendGroup
-    //     .append("circle")
-    //     .attr("cx", (d, i) => (10 + (i * 65)))
-    //     .attr("cy",10)
-    //     .attr("r", 3)
-    //     .attr("fill", (d, i) => color(i));
+    legendGroup
+        .append("circle")
+        .attr("cx", (d, i) => (i < 5) ? (12.5 + (i * 135)) : (12.5 + ((i-5) * 135)))
+        .attr("cy",  (d, i) => (i < 5) ? 12.3 : 32.3)
+        //.attr("y",)
+        .attr("r", 3)
+        .attr("fill", (d, i) => color(i));
     
-    // legendGroup
-    //     .append("text")
-    //     .attr("x", (d, i) => (15 + (i * 65)))
-    //     .attr("y",12.5)
-    //     .text(({key}) => key)
-    //     .style("font-size", 10);
-
-    // svg.append("g")
-    //     .selectAll("text")
-    //     .data(stacked)
-    //     .join("text")
-    //         //.attr("text-anchor", "middle")
-    //         .attr("x", 25.5)
-    //         .attr("y", 35)
-    //         .text(({key}) => key);
-
-
-// Function to create dates?
-    // function fct1( series, data ) {
-    //     let arr = [];
-    
-    //     for(let i = 0; i < series[0].length; i++) {
-    //     let minY = Infinity;
-    //     let maxY = -Infinity;
-        
-    //     for(let s of series) {
-    //         if(s[i][0] < minY) {
-    //         minY = s[i][0];
-    //         }
-    //         if(s[i][1] > maxY) {
-    //         maxY = s[i][1];
-    //         }
-    //     }
-        
-    //     arr.push({
-    //         date: data[i].date,
-    //         minY,
-    //         maxY
-    //     });
-    //     }
-        
-    //     return arr; 
-    // }
+    legendGroup
+        .append("text")
+        .attr("x", (d, i) => (i < 5) ? (20 + (i * 135)) : (20 + ((i-5) * 135)))
+        .attr("y", (d, i) => (i < 5) ? 15 : 35)
+        .text(({key}) => key)
+        .style("font-size", 9);
 
 
 // Rank series each period
