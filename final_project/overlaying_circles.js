@@ -23,10 +23,6 @@ function createCircle({ Base, Max, Current, Component }) {
         .append("svg")
         .attr("viewBox", [0,0,width,height]);
 
-    // let inner_svg = d3.line()
-    //     .append("svg")
-    //     .attr();
-
     circle_svg
         .append("circle")
         .attr("cx", width/2)
@@ -37,6 +33,7 @@ function createCircle({ Base, Max, Current, Component }) {
         .style("fill", "blue")
         .attr("opacity", 0.15);
 
+    // Feb 2020 Line
     circle_svg
         .append("line")
         .style("stroke", "black")
@@ -46,13 +43,15 @@ function createCircle({ Base, Max, Current, Component }) {
         .attr("x2", (width/2)-base_circle*3)
         .attr("y2", (height/2));
 
+    // Feb 2020 Text
     circle_svg
         .append("text")
         .attr("x", ((width/2)-base_circle)-7.5)
-        .attr("y", (height/2))
+        .attr("y", (height/2)+0.75)
         .text("Feb 2020 Level")
-        .style("font-size", 0.75);
+        .style("font-size", 0.65);
 
+    // Current Level Line
     circle_svg
         .append("line")
         .style("stroke", "black")
@@ -66,13 +65,15 @@ function createCircle({ Base, Max, Current, Component }) {
             return (height/2)-(base_circle*(1 + Current))*-2
         });
 
+    // Current Level Text
     circle_svg
         .append("text")
         .attr("x", (height/2)-2.5)
         .attr("y", (height/2)-(base_circle*(1 + Current))*-2.3)
         .text("Current Level")
-        .style("font-size", 0.75);
+        .style("font-size", 0.65);
 
+    // "Max" Level Line 
     circle_svg
         .append("line")
         .style("stroke", "black")
@@ -86,15 +87,15 @@ function createCircle({ Base, Max, Current, Component }) {
         })
         .attr("y2", (height/2));
 
+    // "Max" Level Text
     circle_svg
         .append("text")
-        .attr("x", ((width/2)-base_circle)+7.5)
         .attr("x", d => {
-            return ((width/2)-base_circle)+7.5
+            return (width/2)+base_circle*(1 + Max)*1.5
         })
-        .attr("y", (height/2))
+        .attr("y", (height/2)+0.75)
         .text("Max Deviation Level")
-        .style("font-size", 0.75);
+        .style("font-size", 0.65);
 
     circle_svg
         .append("circle")
