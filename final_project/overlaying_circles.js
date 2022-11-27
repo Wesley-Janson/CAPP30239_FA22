@@ -34,21 +34,38 @@ function createCircle({ Base, Max, Current, Component }) {
         .attr("opacity", 0.15);
 
     // Feb 2020 Line
+    // const type = d3.annotationLabel
+
+    // const annotations = [{
+    // note: {
+    //     label: "Longer text to show text wrapping",
+    //     bgPadding: 20,
+    //     title: "Annotations :)"
+    // },
+    // //can use x, y directly instead of data
+    // data: { date: "18-Sep-09", close: 185.02 },
+    // className: "show-bg",
+    // dy: 137,
+    // dx: 162
+    // }]
+
+    
+
     circle_svg
         .append("line")
         .style("stroke", "black")
         .style("stroke-width", 0.1)
         .attr("x1", (width/2)-base_circle)
         .attr("y1", (height/2))
-        .attr("x2", (width/2)-base_circle*3)
+        .attr("x2", (width/2)-base_circle*2.5)
         .attr("y2", (height/2));
 
     // Feb 2020 Text
     circle_svg
         .append("text")
-        .attr("x", ((width/2)-base_circle)-7.5)
-        .attr("y", (height/2)+0.75)
-        .text("Feb 2020 Level")
+        .attr("x", ((width/2)-base_circle)-6.25)
+        .attr("y", (height/2)+0.25)
+        .text("Feb 2020")
         .style("font-size", 0.65);
 
     // Current Level Line
@@ -62,15 +79,15 @@ function createCircle({ Base, Max, Current, Component }) {
         })
         .attr("x2", (width/2))
         .attr("y2", d => {
-            return (height/2)-(base_circle*(1 + Current))*-2
+            return ((height/2)-(base_circle*(1 + Current))*-1)+2.25
         });
 
     // Current Level Text
     circle_svg
         .append("text")
-        .attr("x", (height/2)-2.5)
-        .attr("y", (height/2)-(base_circle*(1 + Current))*-2.3)
-        .text("Current Level")
+        .attr("x", (height/2)-1.45)
+        .attr("y", ((height/2)-(base_circle*(1 + Current))*-1)+2.85)
+        .text("Current")
         .style("font-size", 0.65);
 
     // "Max" Level Line 
@@ -79,22 +96,22 @@ function createCircle({ Base, Max, Current, Component }) {
         .style("stroke", "black")
         .style("stroke-width", 0.1)
         .attr("x1", d => {
-            return (width/2)+base_circle*(1 + Max)
+            return (width/2)+(1.41421356237/2)*(base_circle*(1 + Max))
         })
-        .attr("y1", (height/2))
+        .attr("y1", (height/2)-(-1.41421356237/2)*(base_circle*(1 + Max)))
         .attr("x2", d => {
-            return (width/2)+base_circle*(1 + Max)*2
+            return (width/2)+(1.41421356237/2)*(base_circle*(1 + Max))+1.75
         })
-        .attr("y2", (height/2));
+        .attr("y2", (height/2)-(-1.41421356237/2)*(base_circle*(1 + Max))+1.75);
 
     // "Max" Level Text
     circle_svg
         .append("text")
         .attr("x", d => {
-            return (width/2)+base_circle*(1 + Max)*1.5
+            return (width/2)+(1.41421356237/2)*(base_circle*(1 + Max))+1.85
         })
-        .attr("y", (height/2)+0.75)
-        .text("Max Deviation Level")
+        .attr("y", (height/2)-(-1.41421356237/2)*(base_circle*(1 + Max))+2)
+        .text("Max Deviation")
         .style("font-size", 0.65);
 
     circle_svg
