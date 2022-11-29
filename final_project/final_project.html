@@ -50,23 +50,23 @@
     <h2>A peak into PCE inflation goods and services during the pandemic</h2>
     <p>
       The onset of the COVID-19 pandemic threw our way of life into a panic. The manner in which we lived seemingly changed 
-      overnight. The mass closures for the good of public health lead to a short, but deep recession, one of the largest shocks to our economy 
+      overnight. The mass closures for the good of public health led to a short, but deep recession, one of the largest shocks to our economy 
       in history led to price pressures that have not been seen in decades. Inflation went from a topic only discussed by academics 
       and policymakers to being on the forefront of public debate. Consumers now find themselves painfully aware of inflation. 
       A fair question to ask would be "which of the goods and services have been driving the high levels of inflation"? This project aims to shed 
-      a little light on that quesiton.
+      a little light on that question.
     </p>
     <p>
       Taking a step back-what is inflation? Why is this question important to us? Inflation can be characterized as the general increase in the overall price level 
       of the goods and services in the economy (cite). It's importance to our day-to-day lives cannot be understated. Inflation affects the purchasing power that people have 
       first and foremost, but also has been shown to be a key indicator in both expected and realized economic performance. Specific to this project, the 
       measure of inflation I use is the Bureau of Economic Analysis' (BEA) Personal Consumption Expenditures Price Index (PCE). This is the measure targeted 
-      by the Federal Reserve in the United States, and is "A measure of the prices that people living in the United States, or those buying on their behalf, 
-      pay for goods and services" (cite). PCE uses 201 goods and services to approximate the general change in price level for consumers. Each month, a representative 
+      by the Federal Reserve in the United States and is "A measure of the prices that people living in the United States, or those buying on their behalf, 
+      pay for goods and services" (cite). PCE inflation uses 201 goods and services to approximate the general change in price level for consumers. Each month, a representative 
       sample of consumers are surveyed about what they purchase, both the price and quantity. The BEA then tabulates each goods price and quantity for consumers. 
       To compute the reported "headline" inflation rate, the expenditure weighted average (as determined by the quantities) of the price changes is computed. Similarly,
       different baskets can be computed ("core" inflation is a commonly reported one-all goods less energy and food items). These aggregate metrics can be a good indicator
-      of the general trend in prices, but may obfiscate underlying trends in specific goods.
+      of the general trend in prices but may obfuscate underlying trends in specific goods.
     </p>
     <p>
       It was with that in mind that I set out to explore the components that make up PCE inflation, and how their prices and weights have changed during COVID-19. 
@@ -80,8 +80,9 @@
       Among all the goods and services that are used to compute PCE inflation, we see the price changes vary widely during the COVID-19 period.
       It is noteworthy that the very bottom and top of the distribution are considerably distant from the average and median percent change 
       in prices. However, everything between the 25th and 75th percentiles are relatively stable and consistent.
-
-      A question that could be asked is: if we are taking the average of the price changes to create the inflation rate, shouldn't these extreme percentiles greatly effect it?
+    </p>
+    <p>
+      A question that a reasonable person could ask is: if we are taking the average of the price changes to create the inflation rate, shouldn't these extreme percentiles greatly effect it?
       While on the right path in recognizing that averages are susceptible to outliers, it is the expenditure weights that go into the creation of inflation that largely prevent
       these outlier components from pulling the inflation measure one way or another. 
     </p>
@@ -92,10 +93,10 @@
     </p>
     <p>
       This variable area chart shows the 10 highest weighted goods on average during the COVID-19 period. The thickness of the line denotes the weighted-price
-      index for the good, with the lines towards the top denoting the goods with the higher index value (February 2020=100). It can be seen that the initial 
+      index for the good, with the lines towards the top denoting the goods with the higher index value (February 2020=100). The initial 
       wave of COVID-19 (2020) led to rapid swings in the prices of these goods. However, by mid-2021, the change in the price indices smoothed out, although 
       many at the top (energy goods in particular) continued to grow in their index value, which can be seen by the growing width of the top few lines. Only recently 
-      have the prices in the energy sector started to cool off, but remain well above pre-pandemic levels.
+      have the prices in the energy sector started to cool off but remain well above pre-pandemic levels.
     </p>
     <h3>How much did some of the most volatile components change during COVID-19?</h3>
     <div class="flex-container" id="overlap"></div>
@@ -105,7 +106,7 @@
     <p>
       The charts above look at five of the most volatile goods and services in terms of monthly price changes in the PCE price index during the COVID-19 period. 
       This illustrates just how extreme the largest deviation from February 2020 price levels were (marked "Max Deviation"), and what the current price is in 
-      relation to the pre-COVID period ("Current"). Although each of these goods are the most volatile in terms of price changes, the nature of those changes are 
+      relation to the pre-COVID period ("Current"). Although each of these goods are the most volatile in terms of price changes, the nature of those changes is 
       quite different. Gasoline, and other fuel/oil behaved in a predictable pattern. Peaking in price during 2021 only to come down, but not to pre-COVID levels. Film/photo supplies
       and primary school lunches took a different shape, however. The pandemic caused a rapid decrease in prices for consumers for both goods 
       (the school lunches have an intuitive answer as to why, many free-lunch programs were instituted at the beginning of the pandemic, causing
@@ -116,7 +117,7 @@
       The process for gathering the relevant price and weights data was a relatively simple one. The raw price index and quantities data is publicly available 
       at the BEA's website. However, I was able to gain access to an intermediate dataset that the Federal Reserve Bank of Cleveland uses
       to create their <a href="https://www.clevelandfed.org/indicators-and-data/median-pce-inflation">Median PCE Inflation</a> bank product. This is the same 
-      data as the BEA, just in an easier format to use. With the data in a digestable format, the data cleaning was not all that difficult. The more arduous
+      data as the BEA, just in an easier format to use. With the data in a digestible format, the data cleaning was not all that difficult. The more arduous
       task was to narrow down which data in specific to use to answer the question "which goods and services drove inflation during COVID-19?". I ultimately decided
       to tell a story of ***. My first chart sets up the story that each good or service in PCE may have wildly different price changes in any given month. The second
       chart looks at the most volatile goods during the COVID-19 period and how their price changes vary considerably. The last chart then ***. Since the data was pretty 
