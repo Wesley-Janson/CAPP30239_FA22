@@ -68,15 +68,34 @@
       different baskets can be computed ("core" inflation is a commonly reported one-all goods less energy and food items). These aggregate metrics can be a good indicator
       of the general trend in prices, but may obfiscate underlying trends in specific goods.
     </p>
+    <p>
+      It was with that in mind that I set out to explore the components that make up PCE inflation, and how their prices and weights have changed during COVID-19. 
+    </p>
     <h3>Look into Price Change Distribution</h3>
     <div class="multiline" id="multiline"></div>
     <p>
       Source: Authors' calculations via <a href="https://bea.gov/national/Release/XLS/Underlying/Section2All_xls.xlsx">Bureau of Economic Analysis</a>
     </p>
     <p>
-      Among all the goods and services that are used to compute PCE inflation, we see price changes vary widely during the COVID-19 period.
+      Among all the goods and services that are used to compute PCE inflation, we see the price changes vary widely during the COVID-19 period.
       It is noteworthy that the very bottom and top of the distribution are considerably distant from the average and median percent change 
-      in prices. Everything in the IQR (25th to 75th percentiles) is relatively clustered, and consistent.
+      in prices. However, everything between the 25th and 75th percentiles are relatively stable and consistent.
+
+      A question that could be asked is: if we are taking the average of the price changes to create the inflation rate, shouldn't these extreme percentiles greatly effect it?
+      While on the right path in recognizing that averages are susceptible to outliers, it is the expenditure weights that go into the creation of inflation that largely prevent
+      these outlier components from pulling the inflation measure one way or another. 
+    </p>
+    <h3>COVID-19 led to massive price swings in the highest weighted goods</h3>
+    <div id="variable-area"></div>
+    <p>
+      Source: Authors' calculations via <a href="https://bea.gov/national/Release/XLS/Underlying/Section2All_xls.xlsx">Bureau of Economic Analysis</a>
+    </p>
+    <p>
+      This variable area chart shows the 10 highest weighted goods on average during the COVID-19 period. The thickness of the line denotes the weighted-price
+      index for the good, with the lines towards the top denoting the goods with the higher index value (February 2020=100). It can be seen that the initial 
+      wave of COVID-19 (2020) led to rapid swings in the prices of these goods. However, by mid-2021, the change in the price indices smoothed out, although 
+      many at the top (energy goods in particular) continued to grow in their index value, which can be seen by the growing width of the top few lines. Only recently 
+      have the prices in the energy sector started to cool off, but remain well above pre-pandemic levels.
     </p>
     <h3>How much did some of the most volatile components change during COVID-19?</h3>
     <div class="flex-container" id="overlap"></div>
@@ -92,27 +111,16 @@
       (the school lunches have an intuitive answer as to why, many free-lunch programs were instituted at the beginning of the pandemic, causing
       consumer spending on school lunches to drop).
     </p>
-    <h3>COVID-19 led to massive price swings</h3>
-    <div id="variable-area"></div>
-    <p>
-      Source: Authors' calculations via <a href="https://bea.gov/national/Release/XLS/Underlying/Section2All_xls.xlsx">Bureau of Economic Analysis</a>
-    </p>
-    <p>
-      This variable area chart shows the 10 highest weighted goods on average during the COVID-19 period. The thickness of the line denotes the weighted-price
-      index for the good, with the lines towards the top denoting the goods with the higher index value (February 2020=100). It can be seen that the initial 
-      wave of COVID-19 (2020) led to rapid swings in the prices of these goods. However, by mid-2021, the change in the price indices smoothed out, although 
-      many at the top (energy goods in particular) have continued to grow in their index value, which can be seen by the growing width of the top few lines. 
-    </p>
     <h3>Data Process</h3>
     <p>
       The process for gathering the relevant price and weights data was a relatively simple one. The raw price index and quantities data is publicly available 
       at the BEA's website. However, I was able to gain access to an intermediate dataset that the Federal Reserve Bank of Cleveland uses
       to create their <a href="https://www.clevelandfed.org/indicators-and-data/median-pce-inflation">Median PCE Inflation</a> bank product. This is the same 
       data as the BEA, just in an easier format to use. With the data in a digestable format, the data cleaning was not all that difficult. The more arduous
-      task was to narrow down which data in specific to use to answer the question "Which Goods and Services Drove Inflation During COVID-19?". I ultimately decided
+      task was to narrow down which data in specific to use to answer the question "which goods and services drove inflation during COVID-19?". I ultimately decided
       to tell a story of ***. My first chart sets up the story that each good or service in PCE may have wildly different price changes in any given month. The second
       chart looks at the most volatile goods during the COVID-19 period and how their price changes vary considerably. The last chart then ***. Since the data was pretty 
-      encompassing, and easy to access, the only real limitation I came across was attempting a D3.js figure that is maybe more complicated than my current skillset.
+      encompassing, and easy to access, the only real limitation I came across was attempting a D3.js figure that is maybe more complicated than my current skillset allows for.
     </p>
   </div>
 </body>
