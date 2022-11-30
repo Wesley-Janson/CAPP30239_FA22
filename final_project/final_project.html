@@ -58,11 +58,13 @@
     </p>
     <p>
       Taking a step back-what is inflation? Why is this question important to us? Inflation can be characterized as the general increase in the overall price level 
-      of the goods and services in the economy (cite). It's importance to our day-to-day lives cannot be understated. Inflation affects the purchasing power that people have 
+      of the goods and services in the economy (<a href="https://www.federalreserve.gov/faqs/economy_14419.htm#:~:text=Inflation%20is%20the%20increase%20in,and%20services%20in%20the%20economy.">Federal Reserve</a>). 
+      It's importance to our day-to-day lives cannot be understated. Inflation affects the purchasing power that people have 
       first and foremost, but also has been shown to be a key indicator in both expected and realized economic performance. Specific to this project, the 
       measure of inflation I use is the Bureau of Economic Analysis' (BEA) Personal Consumption Expenditures Price Index (PCE). This is the measure targeted 
       by the Federal Reserve in the United States and is "A measure of the prices that people living in the United States, or those buying on their behalf, 
-      pay for goods and services" (cite). PCE inflation uses 201 goods and services to approximate the general change in price level for consumers. Each month, a representative 
+      pay for goods and services" (<a href="https://www.bea.gov/resources/learning-center/what-to-know-prices-inflation">BEA</a>). PCE inflation uses 201 goods 
+      and services to approximate the general change in price level for consumers. Each month, a representative 
       sample of consumers are surveyed about what they purchase, both the price and quantity. The BEA then tabulates each goods price and quantity for consumers. 
       To compute the reported "headline" inflation rate, the expenditure weighted average (as determined by the quantities) of the price changes is computed. Similarly,
       different baskets can be computed ("core" inflation is a commonly reported one-all goods less energy and food items). These aggregate metrics can be a good indicator
@@ -115,12 +117,24 @@
     </p>
     <h3>Data Process</h3>
     <p>
+      This topic was of interest to me due to my research background on the topic. Before entering the CAPP program, I was a Research Analyst at the Federal Reserve Bank of Cleveland
+      where I predominantly researched topics related to inflation dynamics and expectations. For most of my time there, the topic of inflation was not one of particular public interest
+      in the U.S., as price levels had been relatively calm for close to four decades. With the onset of COVID-19, that changed. The initial shock to the economy was then followed by levels
+      of inflation not seen in the U.S. since the early 1980s. With the topic now much more of interest to the general public, I thought using some of my previous knowledge could lead to an
+      interesting project.
+    </p>
+    <p>
       The process for gathering the relevant price and weights data was a relatively simple one. The raw price index and quantities data is publicly available 
       at the BEA's website. However, I was able to gain access to an intermediate dataset that the Federal Reserve Bank of Cleveland uses
       to create their <a href="https://www.clevelandfed.org/indicators-and-data/median-pce-inflation">Median PCE Inflation</a> bank product. This is the same 
       data as the BEA, just in an easier format to use. With the data in a digestible format, the data cleaning was not all that difficult. The more arduous
-      task was to narrow down which data in specific to use to answer the question "which goods and services drove inflation during COVID-19?". I ultimately decided
-      to tell a story of ***. My first chart sets up the story that each good or service in PCE may have wildly different price changes in any given month. The second
+      task was to narrow down which data in specific to use to answer the question "which goods and services drove inflation during COVID-19?". I decided the 
+      narrative I wanted to tell was that there are two main inputs into inflation: prices and weights. Understanding how these two interact is paramount in answering the 
+      question posed ***.
+      
+      
+      My first chart sets up the story that each good or service in PCE may have wildly different price changes in any given month. But as I mention, simply observing the price 
+      changes without accounting for the weights is quite deceptive. The second 
       chart looks at the most volatile goods during the COVID-19 period and how their price changes vary considerably. The last chart then ***. Since the data was pretty 
       encompassing, and easy to access, the only real limitation I came across was attempting a D3.js figure that is maybe more complicated than my current skillset allows for.
     </p>
