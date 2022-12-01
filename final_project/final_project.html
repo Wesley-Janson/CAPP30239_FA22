@@ -47,7 +47,7 @@
 <body>
   <div id="container">
     <h1>Which Goods and Services Drove Inflation During COVID-19?</h1>
-    <h2>A peak into PCE inflation goods and services during the pandemic</h2>
+    <h2>A peek into PCE inflation goods and services during the pandemic</h2>
     <p>
       The onset of the COVID-19 pandemic threw our way of life into a panic. The manner in which we lived seemingly changed 
       overnight. The mass closures for the good of public health led to a short, but deep recession, one of the largest shocks to our economy 
@@ -63,16 +63,15 @@
       first and foremost, but also has been shown to be a key indicator in both expected and realized economic performance. Specific to this project, the 
       measure of inflation I use is the Bureau of Economic Analysis' (BEA) Personal Consumption Expenditures Price Index (PCE). This is the measure targeted 
       by the Federal Reserve in the United States and is "A measure of the prices that people living in the United States, or those buying on their behalf, 
-      pay for goods and services" (<a href="https://www.bea.gov/resources/learning-center/what-to-know-prices-inflation">BEA</a>). PCE inflation uses 201 goods 
-      and services to approximate the general change in price level for consumers. Each month, a representative 
+      pay for goods and services" (<a href="https://www.bea.gov/resources/learning-center/what-to-know-prices-inflation">BEA</a>). 
+    </p>
+    <p>
+      PCE inflation uses 201 goods and services to approximate the general change in price level for consumers. Each month, a representative 
       sample of consumers are surveyed about what they purchase, both the price and quantity. The BEA then tabulates each goods price and quantity for consumers. 
       To compute the reported "headline" inflation rate, the expenditure weighted average (as determined by the quantities) of the price changes is computed. Similarly,
       different baskets can be computed ("core" inflation is a commonly reported one-all goods less energy and food items). These aggregate metrics can be a good indicator
-      of the general trend in prices but may obfuscate underlying trends in specific goods.
-    </p>
-    <p>
-      It was with that in mind that I set out to explore the components that make up PCE inflation, and how their prices and weights have changed during COVID-19. 
-    </p>
+      of the general trend in prices but may obfuscate underlying trends in specific goods. It was with that in mind that I set out to explore the components that make up 
+      PCE inflation, and how their prices and weights have changed during COVID-19. 
     <h3>Look into Price Change Distribution</h3>
     <div class="multiline" id="multiline"></div>
     <p>
@@ -86,7 +85,7 @@
     <p>
       A question that a reasonable person could ask is: if we are taking the average of the price changes to create the inflation rate, shouldn't these extreme percentiles greatly effect it?
       While on the right path in recognizing that averages are susceptible to outliers, it is the expenditure weights that go into the creation of inflation that largely prevent
-      these outlier components from pulling the inflation measure one way or another. But what happens when these high-weight goods change dramatically? The short answer, the inflation measure
+      these outlier components from pulling the inflation measure one way or another. But what happens when these high-weight goods change dramatically? The short answer: the inflation measure
       follows suit. The next section shows how our current inflationary episode is being influenced by the highest weighted components.
     </p>
     <h3>COVID-19 led to massive price swings in the highest weighted goods</h3>
@@ -130,13 +129,23 @@
       data as the BEA, just in an easier format to use. With the data in a digestible format, the data cleaning was not all that difficult. The more arduous
       task was to narrow down which data in specific to use to answer the question "which goods and services drove inflation during COVID-19?". I decided the 
       narrative I wanted to tell was that there are two main inputs into inflation: prices and weights. Understanding how these two interact is paramount in answering the 
-      question posed ***.
-      
-      
+      question posed in the title of this project.
+    </p>
+    <p>
       My first chart sets up the story that each good or service in PCE may have wildly different price changes in any given month. But as I mention, simply observing the price 
-      changes without accounting for the weights is quite deceptive. The second 
-      chart looks at the most volatile goods during the COVID-19 period and how their price changes vary considerably. The last chart then ***. Since the data was pretty 
-      encompassing, and easy to access, the only real limitation I came across was attempting a D3.js figure that is maybe more complicated than my current skillset allows for.
+      changes without accounting for the weights is quite deceptive. If one good has a price change 10 percentage points higher than the average that certainly is of note, but 
+      if it comprisises just a small portion of the "basket" of goods, its overall importance to inflation is quite negligible. The idea of the importance of weights leads me to 
+      my second chart, which looks at the highest weighted goods seen during the COVID-19 period (as determined by average monthly weight from March 2020-September 2022), and 
+      look at how their price change patterns developed over time. This visual was designed to allow one to easily see how at one point during the pandemic, the highest weighted
+      (in some respects, most important) goods saw extreme price changes in relation to pre-COVID levels, and though now are less extreme, still have not yet returned to February 2020 levels.
+      In juxtaposition to weights, my last chart emphasizes the large changes in prices during the COVID-19 period. By taking the 10 goods with the highest volatility in price from March 2020-September 2022
+      (as defined by their variance), I can see the extent to which the global pandemic, and the ensuing supply chain issues had. One noteworthy observation, there is a bit
+      of overlap between the goods that appear in the second and third figures. <i>These</i> are the exact goods that should receive attention-goods that are relatively large purchases for
+      consumers that experienced large price swings.
+    </p>
+    <p>
+      Since the data was pretty encompassing, and easy to access, the only real limitation I came across was attempting a D3.js figure that is maybe more complicated than my current skillset allows for.
+      FINISH THIS PART
     </p>
   </div>
 </body>
