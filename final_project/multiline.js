@@ -5,7 +5,7 @@ Figure 1 - Multiline Graph
 
 let height = 350,
     width = 600,
-    margin = ({ top: 25, right: 54.2, bottom: 15, left: 30 })
+    margin = ({ top: 25, right: 54.2, bottom: 20, left: 30 })
     innerWidth = width - margin.left - margin.right;
 
 const svg = d3.select("#multiline")
@@ -34,10 +34,11 @@ d3.csv("pctile_prices.csv").then(data => {
 
   svg.append("g")
     .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(d3.axisBottom(x));
+    .call(d3.axisBottom(x).tickSize(8));
 
   svg.append("g")
     .attr("transform", `translate(${margin.left},0)`)
+    //.call(d3.axisLeft(y).innerTickSize(-(width)).tickFormat(d => d + "%"));
     .call(d3.axisLeft(y).tickSize(-innerWidth).tickFormat(d => d + "%"));
 
   let line = d3.line()

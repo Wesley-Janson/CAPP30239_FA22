@@ -1,5 +1,5 @@
 #container {
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -31,4 +31,31 @@
     align-self: auto;
     order: 0;
     width: 20%;
+}
+
+text {
+font-size: 6px;
+text-transform: uppercase;
+}
+
+.y-axis path.domain { 
+display: none; 
+}
+
+.pctile { 
+cursor: default; 
+}
+
+.pctile path {
+stroke-width: 1.5;
+opacity: 0.75;
+}
+
+.highlight path {
+stroke: steelblue;
+opacity: 1;
+}
+
+.highlight text { 
+fill: steelblue; 
 }

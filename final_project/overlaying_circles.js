@@ -1,6 +1,6 @@
 /* Wesley Janson
 CAPP 30239 Final Project
-Figure 2 - Overlaying Circles Graph
+Figure 3 - Overlaying Circles Graph
 */
 
 d3.csv("overlap_circles.csv").then(data => {
