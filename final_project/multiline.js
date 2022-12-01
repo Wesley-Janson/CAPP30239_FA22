@@ -32,14 +32,22 @@ d3.csv("pctile_prices.csv").then(data => {
     .domain(d3.extent(data, d => d.Value))
     .range([height - margin.bottom, margin.top]);
 
-  svg.append("g")
-    .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(d3.axisBottom(x).tickSize(8));
+  //svg.append("g")
+    //.attr("transform", `translate(${margin.left},0)`)
+    //.call(d3.axisLeft(y).innerTickSize(-(width)).tickFormat(d => d + "%"));
+    //.call(d3.axisLeft(y).tickSize(-innerWidth).tickFormat(d => d + "%"));
 
   svg.append("g")
     .attr("transform", `translate(${margin.left},0)`)
-    //.call(d3.axisLeft(y).innerTickSize(-(width)).tickFormat(d => d + "%"));
-    .call(d3.axisLeft(y).tickSize(-innerWidth).tickFormat(d => d + "%"));
+    .attr("class", "y-axis")
+    .call(d3.axisLeft(y)
+      .tickSize(-innerWidth)
+      .tickFormat(d => d + "%")
+    );
+
+  svg.append("g")
+    .attr("transform", `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x).tickSize(8));
 
   let line = d3.line()
     .x(d => x(d.Date))
@@ -62,7 +70,7 @@ d3.csv("pctile_prices.csv").then(data => {
     g.append("path")
       .datum(pctileData)
       .attr("fill", "none")
-      .attr("stroke", "#ccc")
+      .attr("stroke", "#999")
       .attr("d", line)
 
     let lastEntry = pctileData[pctileData.length - 1]; //last piece of data to position text x and y
