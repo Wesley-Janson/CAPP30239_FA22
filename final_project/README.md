@@ -14,7 +14,7 @@ This folder contains all the relevant files needed for my CAPP 30239 Final Proje
 * styles.css: Style file for final_project.html.
 
 ### data_cleaning subfolder
-This folder contains the raw data sent from the Federal Reserve Bank of Cleveland, the intermediate prices and weights data, and the R code
+This subfolder contains the raw data sent from the Federal Reserve Bank of Cleveland, the intermediate prices and weights data, and the R code
 used to create the intermediate datasets. 
 *   data_cleaning.R: initial data cleaning code that takes in the raw data, and saves the intermediate datasets "prices.csv" and "weights.csv".
 *   creating_graph_csvs.R: R code that takes intermediate data CSVs and alters data to export final CSVs that are used in the figures.
