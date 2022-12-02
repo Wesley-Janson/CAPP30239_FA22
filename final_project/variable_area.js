@@ -3,9 +3,6 @@ CAPP 30239 Final Project
 Figure 2 - Variable Area Graph
 */
 
-//d3 = require("d3@6")
-//import {swatches} from "@d3/color-legend"
-
 d3.csv("covid_prices.csv").then( data => {
 
     let colorMap = ({

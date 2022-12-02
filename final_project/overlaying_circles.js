@@ -33,24 +33,6 @@ function createCircle({ Base, Max, Current, Component }) {
         .style("fill", "blue")
         .attr("opacity", 0.15);
 
-    // Feb 2020 Line
-    // const type = d3.annotationLabel
-
-    // const annotations = [{
-    // note: {
-    //     label: "Longer text to show text wrapping",
-    //     bgPadding: 20,
-    //     title: "Annotations :)"
-    // },
-    // //can use x, y directly instead of data
-    // data: { date: "18-Sep-09", close: 185.02 },
-    // className: "show-bg",
-    // dy: 137,
-    // dx: 162
-    // }]
-
-    
-
     circle_svg
         .append("line")
         .style("stroke", "black")

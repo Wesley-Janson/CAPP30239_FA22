@@ -4,9 +4,9 @@ Figure 1 - Multiline Graph
 */
 
 let height = 350,
-    width = 600,
-    margin = ({ top: 25, right: 54.2, bottom: 20, left: 30 })
-    innerWidth = width - margin.left - margin.right;
+  width = 600,
+  margin = ({ top: 25, right: 54.2, bottom: 20, left: 30 })
+  innerWidth = width - margin.left - margin.right;
 
 const svg = d3.select("#multiline")
   .append("svg")
@@ -31,11 +31,6 @@ d3.csv("pctile_prices.csv").then(data => {
   let y = d3.scaleLinear()
     .domain(d3.extent(data, d => d.Value))
     .range([height - margin.bottom, margin.top]);
-
-  //svg.append("g")
-    //.attr("transform", `translate(${margin.left},0)`)
-    //.call(d3.axisLeft(y).innerTickSize(-(width)).tickFormat(d => d + "%"));
-    //.call(d3.axisLeft(y).tickSize(-innerWidth).tickFormat(d => d + "%"));
 
   svg.append("g")
     .attr("transform", `translate(${margin.left},0)`)
