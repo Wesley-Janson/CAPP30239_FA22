@@ -1,8 +1,8 @@
-### Which Goods and Services Drove Inflation During COVID-19?
+# Which Goods and Services Drove Inflation During COVID-19?
 ## CAPP 30239 Final Project
-# Wesley Janson
+### Wesley Janson
 
-# data_cleaning
+### data_cleaning
 This folder contains the raw data sent from the Federal Reserve Bank of Cleveland, the intermediate prices and weights data, and the R code
 used to create the intermediate datasets. 
 * data_cleaning.R: initial data cleaning code that takes in the raw data, and saves the intermediate datasets "prices.csv" and "weights.csv".
