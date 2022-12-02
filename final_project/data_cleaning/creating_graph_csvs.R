@@ -66,7 +66,7 @@ write_csv(all_pctiles_prices, "../pctile_prices.csv")
 
 ####################################################
 ##### Top 10 Highest Weighted Goods and Services and their 
-##### Price Changes-Figure 3 Data
+##### Price Changes-Figure 2 Data
 avg_weights <- covid_weights[,-1] %>% 
   summarise_all(funs(mean))
 avg_weights10 <- avg_weights[which(avg_weights %in% sort(as.data.frame(t(avg_weights))$V1, 
@@ -96,33 +96,26 @@ high_var_price <- as.data.frame(cbind(high_var_price[,1],apply(high_var_price[,-
 
 # Only keep top 6
 high_var_price <- high_var_price[,1:7]
+colnames(high_var_price) <- c("Date", "Gasoline/Fuel", "Fuel/Oil", "Film/Photo Supplies", "Motor Vehicle Rental", "Air Transportation", "Primary School Lunches")
 
 test <- high_var_price[,1:2]
 
-overlap_data <- data_frame()
-for (i in 5:length(high_var_price)) {
-  test <- high_var_price[,c(1,i)]
+overlap_data <- data_frame(Base=numeric(), Max=numeric(), Current=numeric(), Component=character())
+for (i in 2:length(high_var_price)) {
+  colm <- high_var_price[,i]
+  current <- (colm[length(colm)]-100)*0.01
+  max_dev <- colm[which((abs(100-colm))==max(abs(100-colm)))]
+  if (max_dev < 100) {
+    max_dev <- (100 - max_dev)*-0.01 
+  } else {
+    max_dev <- (max_dev - 100)*0.01
+  }
   
-  test <- test[test[,2] %in% c(100,max(high_var_price[,i]), 
-                                                           high_var_price[nrow(high_var_price),i]),]
-  test$type <- c(c("Base", "Max", "Current"))
-  test <- test[,-1]
-  test_wide <- test %>%
-    pivot_wider(names_from = type, values_from = colnames(test)[1])
-  
-  overlap_data <- rbind(overlap_data, test_wide)
-  
+  overlap_data <- rbind(overlap_data, c(1, max_dev, current, colnames(high_var_price)[i]))
 }
+colnames(overlap_data) <- c("Base","Max","Current","Component")
 
-# write_csv(overlap_data, "../overlap_circles.csv")
 
-# overlap_test <- overlap_data[1,]
-# overlap_test$Component <- colnames(high_var_price)[2]
-# write_csv(overlap_test, "overlap_test.csv")
-# overlap_test$Base <- overlap_test$Base*0.01
-# overlap_test$Max <- (overlap_test$Max-100)*0.01
-# overlap_test$`Last Reading` <- (overlap_test$`Current`-100)*0.01
+write_csv(overlap_data, "../overlap_circles.csv")
 
-  
-  
 
