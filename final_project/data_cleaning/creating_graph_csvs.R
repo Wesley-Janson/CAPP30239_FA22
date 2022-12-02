@@ -3,7 +3,8 @@
 #' Title: creating_graph_csvs.R
 #' Author(s): Wesley Janson
 #' Last Edited: 11/24/2022
-#' Description: Filter data to create end-use CSVs for analysis
+#' Description: Filter data to create end-use CSVs for analysis. To be run 
+#'              after "data_cleaning.R"
 ####
 
 ##### Check for needed packages, install if needed and load in
