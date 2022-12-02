@@ -15,7 +15,7 @@ d3.csv("covid_prices.csv").then( data => {
         "New Light Trucks": "#e377c2",
         "Goodwill Services": "#7f7f7f",
         "Prescription Drugs": "#bcbd22",
-        "Gasoline/Fuel":"#17becf"
+        "Gasoline/Fuel": "#17becf"
     })
 
     let color = d3.scaleOrdinal()
