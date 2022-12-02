@@ -11,7 +11,7 @@ This folder contains all the relevant files needed for my CAPP 30239 Final Proje
 * covid_prices.csv: Underlying data for "variable_area.js", created in "creating_graph_csvs.R".
 * overlap_circles.csv: Underlying data for "overlaying_circles.js", created in "creating_graph_csvs.R".
 * pctile_prices.csv: Underlying data for "multiline.js", created in "creating_graph_csvs.R".
-* styles.css: 
+* styles.css: Style file for final_project.html.
 
 ### data_cleaning subfolder
 This folder contains the raw data sent from the Federal Reserve Bank of Cleveland, the intermediate prices and weights data, and the R code
