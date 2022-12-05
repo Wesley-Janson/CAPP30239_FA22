@@ -3,6 +3,10 @@ CAPP 30239 Final Project
 Corresponding style file
 */
 
+* {
+    font-family: 'Work Sans',Arial, Helvetica, sans-serif;
+}
+
 #container {
     max-width: 1000px;
     margin: 0 auto;
