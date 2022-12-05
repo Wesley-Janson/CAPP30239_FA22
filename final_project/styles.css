@@ -3,6 +3,7 @@ CAPP 30239 Final Project
 Corresponding style file
 */
 
+/* Set font for document */
 * {
     font-family: 'Work Sans',Arial, Helvetica, sans-serif;
 }
@@ -12,13 +13,13 @@ Corresponding style file
     margin: 0 auto;
 }
 
-#overlap {
-    display: flex;
-    flex-wrap: wrap;
+text {
+    font-size: 6px;
+    text-transform: uppercase;
 }
 
-#overlap>svg {
-    width: 33%;
+.y-axis path.domain { 
+    display: none; 
 }
 
 .flex-container {
@@ -32,23 +33,10 @@ Corresponding style file
     margin: 0px 0px;
 }
 
-.flex-container svg {
-    display: block;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    align-self: auto;
-    order: 0;
-    width: 20%;
-}
-
-text {
-    font-size: 6px;
-    text-transform: uppercase;
-}
-
-.y-axis path.domain { 
-    display: none; 
+/* Figure 1 container */
+#multiline .y-axis line, #multiline .y-axis line {
+    stroke: #ccc;
+    stroke-dasharray: 1px;
 }
 
 .pctile { 
@@ -68,8 +56,24 @@ text {
 .highlight text { 
     fill: red; 
 }
-  
-#multiline .y-axis line, #multiline .y-axis line {
-    stroke: #ccc;
-    stroke-dasharray: 1px;
+
+
+/* Figure 3 Container*/
+#overlap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#overlap>svg {
+    width: 33%;
+}
+
+.flex-container svg {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    width: 20%;
 }
